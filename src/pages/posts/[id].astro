@@ -17,7 +17,7 @@ export async function getStaticPaths() {
     });
 }
 const { id } = Astro.props;
-const post = await getEntry("posts", id);
+const post: any = await getEntry("posts", id);
 const {
     data: { title, author, description, tags },
     rendered: { html },
@@ -30,4 +30,5 @@ const {
     ({author})
     <hr />
     <p>tags: {tags.join(", ")}</p>
+    <hr />
 </Layout>
