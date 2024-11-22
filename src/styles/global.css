@@ -1,0 +1,33 @@
+
+@import "open-props/style";
+@import "open-props/normalize";
+
+body {
+    display: grid;
+    gap: var(var(--size-fluid-2));
+    grid-template-rows: auto 1fr auto;
+    max-width: var(--size-md);
+    min-height: 100svh;
+    margin: auto;
+    padding: var(--size-4) var(--size-4);
+}
+header {
+    && nav {
+        && ul {
+            display: flex;
+            gap: var(var(--size-fluid-2));
+            list-style-type: none;
+            margin-block: var(--size-fluid-1) 0;
+            padding: var(--size-fluid-1) 0;
+            && li {
+                padding: var(--size-fluid-1) var(--size-fluid-2) var(--size-fluid-1) 0;
+            }
+        }
+    }
+}
+p {
+    margin:var(--size-3) 0;
+}
+pre {
+    white-space: pre-wrap;       
+}

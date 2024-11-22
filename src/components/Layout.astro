@@ -1,0 +1,32 @@
+---
+import "@styles/global.css";
+const { frontmatter, title = "TBR DOT FYI", displayTitle = true } = Astro.props;
+const pageTitle = frontmatter ? frontmatter.title || title : title;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="generator" content={Astro.generator} />
+        {pageTitle && <title>{pageTitle}</title>}
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/shelves">Shelves</a></li>
+                    <li><a href="/books">Books</a></li>
+                    <li><a href="/about">About</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {displayTitle && <h1>{pageTitle}</h1>}
+            <slot />
+        </main>
+        <footer>&copy; 2024</footer>
+    </body>
+</html>
