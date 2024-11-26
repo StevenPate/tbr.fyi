@@ -1,0 +1,29 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Layout from "@components/Layout.astro";
+import Shelf from "@components/Shelf.astro";
+
+export async function getStaticPaths() {
+    const shelves = await getCollection("allShelves");
+    return shelves?.map((shelf: any) => {
+        const { id } = shelf;
+        return {
+            params: {
+                id,
+            },
+            props: {
+                id,
+            },
+        };
+    });
+}
+const { id } = Astro.props;
+const shelf: any = await getEntry("allShelves", id);
+const {
+    data: { name },
+} = shelf;
+---
+
+<Layout title={name}>
+    <Shelf {id} displayFormat="full" showName={false} />
+</Layout>

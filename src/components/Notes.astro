@@ -1,0 +1,8 @@
+---
+const { book } = Astro.props;
+const {
+    data: { notes },
+} = book;
+---
+
+{notes && <div class="notes">{notes}</div>}

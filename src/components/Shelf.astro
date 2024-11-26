@@ -1,7 +1,53 @@
 ---
+import { slugify } from "../ts/utils";
 import { getEntry } from "astro:content";
-const { id } = Astro.props;
-const shelf = await getEntry("allShelves", id);
+
+import Book from "./Book.astro";
+
+const { id, displayFormat = "card", showName = "true" } = Astro.props;
+const shelf: any = await getEntry("allShelves", id);
+const {
+    data: { name, notes, books },
+} = shelf;
+
+books.map((book: any) => {
+    book.id = book.id || book?.isbn || slugify(book?.name || book?.title);
+});
 ---
 
-<pre>{shelf && JSON.stringify(shelf.data, null, 2)}</pre>
+{
+    displayFormat && (
+        <div
+            class={`shelf ${displayFormat}`}
+            data-display-format={displayFormat}
+        >
+            {/* <div class="header"><!--image --></div> */}
+            <div class="body">
+                {name && showName && <h2 class="name">{name}</h2>}
+                {notes && (
+                    <div class="notes">
+                        {notes && <h4 class="notes">{notes}</h4>}
+                    </div>
+                )}
+                {books && (
+                    <div class="books">
+                        {books.map((book: any) => (
+                            <Book id={book.id} showLink={false} />
+                        ))}
+                    </div>
+                )}
+
+                <details class="data">
+                    <summary>Shelf Data</summary>
+                    <pre>{shelf && JSON.stringify(shelf.data, null, 2)}</pre>
+                </details>
+
+                <div class="actions">
+                    <a href={`/shelves/${id}`} class="link button">
+                        View this shelf
+                    </a>
+                </div>
+            </div>
+        </div>
+    )
+}

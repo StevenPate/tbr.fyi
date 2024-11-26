@@ -9,5 +9,13 @@ const title = "Shelves";
 
 <Layout {title}>
     <p>Here, we will add some shelves of books. For now, we just have one...</p>
-    {shelves && shelves.map((shelf: { id: string }) => <Shelf id={shelf.id} />)}
+    {
+        shelves && (
+            <div class="shelves" data-display-contents="card">
+                {shelves.map((shelf: { id: string }) => (
+                    <Shelf id={shelf.id} displayFormat="card" />
+                ))}
+            </div>
+        )
+    }
 </Layout>

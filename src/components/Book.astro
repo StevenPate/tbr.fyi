@@ -1,0 +1,30 @@
+---
+import { getEntry } from "astro:content";
+
+import Cover from "./Cover.astro";
+import ISBN from "./ISBN.astro";
+import Notes from "./Notes.astro";
+import Title from "./Title.astro";
+
+const { id, displayFormat = "full", showName = "true" } = Astro.props;
+const book: any = await getEntry("allBooks", id);
+const props = { book, displayFormat, showName };
+---
+
+<div class={`book ${displayFormat}`} data-display-format={displayFormat}>
+    <div class="info">
+        <Title {...props} />
+    </div>
+    <div class="details">
+        <Notes {...props} />
+        <dl class="bookData">
+            <ISBN {...props} />
+        </dl>
+        <div class="collectionInfo"></div>
+    </div>
+    <Cover {...props} />
+    <details class="data">
+        <summary>Book Data</summary>
+        <pre>{JSON.stringify(book.data, null, 2)}</pre>
+    </details>
+</div>

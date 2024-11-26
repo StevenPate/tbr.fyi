@@ -1,0 +1,14 @@
+---
+const { book } = Astro.props;
+const {
+    data: { id, image = "/images/placeholder.png", title },
+} = book;
+---
+
+{
+    image && (
+        <div class="cover" itemprop="cover">
+            <img src={image} alt={title || id} />
+        </div>
+    )
+}

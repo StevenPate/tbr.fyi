@@ -1,5 +1,9 @@
 ---
 import Layout from "@components/Layout.astro";
+import Book from "@components/Book.astro";
+import { getCollection } from "astro:content";
+
+const books = await getCollection("allBooks");
 const title = "Books";
 ---
 
@@ -9,4 +13,13 @@ const title = "Books";
         We will paginate some display of all the books that appear on the
         shelves, allow them to be searched and sorted. Maybe even filtered.
     </p>
+    {
+        books && (
+            <div class="books" data-display-contents="card">
+                {books.map((book: { id: string }) => (
+                    <Book id={book.id} displayFormat="card" />
+                ))}
+            </div>
+        )
+    }
 </Layout>

@@ -1,0 +1,17 @@
+---
+const { book, showName = "true", showLink = "true" } = Astro.props;
+const {
+    data: { id, title: titleString = "Title Missing" },
+} = book;
+let title: string = showLink
+    ? `<a href="/books/${id}">${titleString}</a>`
+    : titleString;
+---
+
+{
+    (title || id) && showName && (
+        <h2 class="title" data-title={title} itemprop="title">
+            <Fragment set:html={title} />
+        </h2>
+    )
+}

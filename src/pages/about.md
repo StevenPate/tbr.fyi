@@ -10,3 +10,5 @@ A thing to easily share collections of books via web pages and APIs. Turns markd
 ## Blog posts
 
 [Let's get started](/posts/lets-get-started)
+
+[Books Collected](/posts/books-collection)

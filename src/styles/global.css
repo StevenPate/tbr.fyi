@@ -2,11 +2,16 @@
 @import "open-props/style";
 @import "open-props/normalize";
 
+:where(html) {
+    --lg: var(--size-fluid-5);
+    --md: var(--size-fluid-3);
+    --sm: var(--size-fluid-2)
+}
 body {
     display: grid;
-    gap: var(var(--size-fluid-2));
+    gap: var(--size-fluid-2);
     grid-template-rows: auto 1fr auto;
-    max-width: var(--size-md);
+    max-width: var(--size-lg);
     min-height: 100svh;
     margin: auto;
     padding: var(--size-4) var(--size-4);
@@ -31,3 +36,205 @@ p {
 pre {
     white-space: pre-wrap;       
 }
+
+.shelves {
+    display: grid;
+    gap:var(--md);
+}
+.shelves[data-display-contents="card"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.shelf {
+    && > * {
+        display: none;
+        visibility:hidden;
+    }
+}
+.shelf[data-display-format="card"] {
+    display: grid;
+    gap:var(--md);
+    && .header {
+        visibility: visible;
+        display: grid;
+        gap:var(--sm);
+    }
+    && .body {
+        visibility: visible;
+        display: grid;
+        gap:var(--sm);
+        && .books,
+        && details {
+            visibility: visible;
+            display:none;
+        }
+        && .actions {
+            text-align:center;
+        }
+    }
+}
+.shelf[data-display-format="full"] {
+    display: grid;
+    gap:var(--md);
+    && .header {
+        visibility: visible;
+        display: grid;
+        gap:var(--sm);
+    }
+    && .body {
+        visibility: visible;
+        display: grid;
+        gap:var(--sm);
+        && .books {
+            margin-top: var(--sm);
+        }
+        && .actions {
+            visibility:hidden;
+            display:none;
+        }
+    }
+}
+
+.books {
+    display: grid;
+    gap:var(--md);
+}
+.books[data-display-contents="card"] {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+.book {
+    && .cover, 
+    && .info,
+    && .details,
+    && .data {
+        display:none;
+        visibility:hidden;
+    }
+}
+.book[data-display-format="full"] {
+    visibility:visible;
+    display: grid;
+    gap:var(--md);
+    grid-template-columns: minmax(30%, 50%) minmax(70%, 1fr);
+    grid-template-rows: auto auto 1fr ;
+    && .cover {
+        display:grid;
+        visibility:visible;
+        grid-column: 1;
+        grid-row: 1 / span 3;
+    }
+    && .info {
+        display:grid;
+        visibility:visible;
+        grid-column: 2;
+        grid-row: 1;
+    }
+    && .details{
+        display:grid;
+        visibility:visible;
+        grid-column:2;
+        grid-row:2;
+        display:grid;
+        gap:var(--md);
+    } 
+    && .data {
+        visibility:visible;
+        display:grid;
+        grid-column:2;
+        grid-row:3;
+        height: fit-content;
+    }
+    /* && .details {
+        display: grid;
+        gap:var(--sm);
+    } */
+}
+.book[data-display-format="card"] {
+    && .info {
+        visibility: visible;
+        display:grid;
+    }
+}
+
+.card {
+    background: var(--surface-3);
+    border: 1px solid var(--surface-1);
+    padding: var(--size-4);
+    border-radius: var(--radius-2);
+    box-shadow: var(--shadow-3);
+    @media(max-width: 40rem) {
+        width: 100%;
+    }
+    @media(min-width: 40rem) {
+        width: 48%;
+    }
+    @media(min-width: 50rem) {
+    width: 30%;
+    }
+    animation: 
+      var(--animation-scale-down) reverse,
+      var(--animation-fade-out) reverse;
+    animation-timing-function: var(--ease-squish-1);
+    animation-duration: .3s;
+  }
+
+
+  summary {
+    background:var(--surface-1);
+    padding-left:none;
+  }
+
+  .button {
+    display: inline-flex;
+    white-space: nowrap;
+    
+    font-size: var(--font-size-fluid-1);
+    font-weight: var(--font-weight-7);
+    
+    padding-inline: var(--size-6);
+    padding-block: var(--size-3);
+  
+    /* color: var(--blue-9); */
+    /* border: var(--border-size-2) solid var(--blue-5); */
+    background-color: transparent;
+    border-radius: var(--radius-2);
+    
+    &:is(:hover, :focus) {
+      cursor: pointer;
+      color: var(--blue-0);
+      background-color: var(--blue-5);
+      
+      @nest .light & {
+        text-shadow: 0 1px 0 var(--blue-8);
+      }
+    }
+    
+    &:active:not(:focus-visible) {
+      position: relative;
+  /*     inset-block-start: 2px; */
+    }
+  
+    @nest .dark & {
+      border-color: var(--blue-3);
+      color: var(--blue-1);
+      
+      &:hover {
+        background-color: var(--blue-3);
+        color: black;
+      }
+    }
+  }
+  
+  @media
+   (prefers-reduced-motion: no-preference) {
+    .button:focus {
+      transition: outline-offset .25s ease;
+    }
+    .button:focus:not(:active) {
+      outline-offset: 5px;
+    }
+  }
+  
