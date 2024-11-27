@@ -6,4 +6,4 @@
           notes: "This is one of a few Norman MacLean books that I always find asking me to open them up."
 ---
 
-Things that I actually am in posession of and which I want to read. 
+Things that I actually am in posession of and which I want to read.
