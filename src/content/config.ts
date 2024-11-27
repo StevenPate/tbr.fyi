@@ -33,11 +33,24 @@ const allShelves = defineCollection({
 
 const allBooks = defineCollection({
     loader: async () => {
-        const shelves = [...(await getCollection("allShelves"))];
+
+        const mdShelves = [...(await getCollection("mdShelves"))];
+        
+        const shelves:any = mdShelves.map((s) => {
+            const {
+                id,
+                data: { books }
+            } = s;
+            return {
+                id,
+                books,
+            };
+        });
+
         const allBooks: z.infer<typeof bookSchema>[] = []
-        shelves.map((shelf) => {
-            const { data: {books}} = shelf;
-            books.map((book)=>{
+        shelves.map((shelf:any) => {
+            const { books} = shelf;
+            books.map((book:any)=>{
                 book.shelfID = shelf.id
                 book.id = book.id || book?.isbn || slugify(book?.name || book?.title || '')
                 allBooks.push(book)
