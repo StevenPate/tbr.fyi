@@ -53,7 +53,6 @@ const allBooks = defineCollection({
         const allBooks: z.infer<typeof bookEntrySchema>[] = [];
         shelves.map((shelf: any) => {
             const { books, id: shelfID } = shelf;
-            console.log("🚀 ~ shelves.map ~ books:", books);
 
             books?.map((b: z.infer<typeof bookSchema>) => {
                 const shelfEntry = {
