@@ -1,0 +1,31 @@
+---
+const {
+    book,
+    book: { translator = [] },
+    showContributors = true,
+} = Astro.props;
+console.log("🚀 ~ book:", book);
+console.log("🚀 ~ translator:", translator);
+
+const translatorsData =
+    translator.length > 0
+        ? translator.map((author: string) => {
+              return `<span itemprop="translator" data-author={translator}>${translator}</span>`;
+          })
+        : "";
+
+const translatorList = new Intl.ListFormat("en-US", {
+    style: "long",
+    type: "conjunction",
+}).format(translatorsData);
+---
+
+{
+    translator && translator.length > 0 && showContributors && (
+        <h4
+            class="translator"
+            itemprop="translator"
+            set:html={`translated by ${translatorList}`}
+        />
+    )
+}

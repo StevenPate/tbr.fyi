@@ -98,12 +98,13 @@ pre {
 
 .books {
     display: grid;
-    gap:var(--md);
+    gap:var(--lg);
 }
 .books[data-display-contents="card"] {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
+    gap:var(--md);
 }
 .book {
     && .cover, 
@@ -113,12 +114,52 @@ pre {
         display:none;
         visibility:hidden;
     }
+    & .label {
+        /* display:none; */
+        font-weight: var(--font-weight-7);
+        font-size:var(--font-size-2);
+     }
+     & .author,
+     & .translator {
+        line-height: 115%;
+     }
+     & .translator {
+         opacity: .7;
+     }
+    &  ul { 
+        list-style-type: none;
+        padding:0;
+        margin-top: var(--size-1);
+        display: grid;
+        gap: var(--md);
+    }
+    & li {
+        padding:var(--size-4);
+    }
+    & .note {
+        background-color:var(--surface-2)
+    }
+    & .attribution {
+        text-transform: capitalize;
+    }
+    & .attribution::before {
+            content: " (";
+        }
+    & .attribution::after {
+            content: ") ";
+        }
+    & .source::before {
+            content: " (from ";
+        }
+    & .source::after {
+            content: ") ";
+        }
 }
 .book[data-display-format="full"] {
     visibility:visible;
     display: grid;
     gap:var(--md);
-    grid-template-columns: minmax(30%, 50%) minmax(70%, 1fr);
+    grid-template-columns: minmax(30%, 50%) minmax(65%, 1fr);
     grid-template-rows: auto auto 1fr ;
     && .cover {
         display:grid;
@@ -133,12 +174,28 @@ pre {
         grid-row: 1;
     }
     && .details{
-        display:grid;
         visibility:visible;
         grid-column:2;
         grid-row:2;
         display:grid;
         gap:var(--md);
+        && .collectionInfo{
+            visibility:visible;
+            display:grid;
+            gap:var(--md);
+            && .shelfLocations {
+                && ul.links {
+                    gap:var(--size-1);
+                    && li {
+                        padding: var(--size-1) var(--size-4);
+                    }
+                }
+
+            }
+            && .dates {
+                color: var(--surface-3);
+            }
+        } 
     } 
     && .data {
         visibility:visible;

@@ -1,0 +1,30 @@
+---
+import Translator from "./Translator.astro";
+const {
+    book,
+    book: { author = ["Unknown"] },
+    showAuthor = true,
+    showTranslator = true,
+} = Astro.props;
+
+// const authorsData = author.map((author: string) => {
+//     return `<span itemprop="author" data-author={author}>${author}</span>`;
+// });
+
+const authorList = new Intl.ListFormat("en-US", {
+    style: "long",
+    type: "conjunction",
+}).format(
+    author.map((author: string) => {
+        return `<span itemprop="author" data-author={author}>${author}</span>`;
+    })
+);
+const props = { showTranslator, book };
+---
+
+{
+    author && showAuthor && (
+        <h4 class="author" itemprop="author" set:html={`by ${authorList}`} />
+    )
+}
+{showTranslator && <Translator {...props} />}

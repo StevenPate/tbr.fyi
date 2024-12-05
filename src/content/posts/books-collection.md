@@ -1,12 +1,11 @@
 ---
-layout: ../../components/BlogLayout.astro
+layout: ../../layouts/BlogLayout.astro
 title: "Books Collection"
 pubDate: 2024-11-18
 description: "Now we've got some collections."
 author: 'Steven Pate'
 tags: ["astro", "blogging", "astro", "learning in public"]
 ---
-## Books Colllection
 
 With this update, I created a books collection. This meant adding a colllection to the content layer that takes all the books arrays from the shelves collection items and adds them to a new collection. This is just a first phase, because this solution will not be able to acommodate a book being on multiple shelves.
 

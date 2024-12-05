@@ -1,0 +1,23 @@
+---
+const {
+    book: { about = [] },
+} = Astro.props;
+
+const aboutData = about.map((a: string) => {
+    return `<span itemprop="about" data-about=${a}>${a}</span>`;
+});
+
+const aboutList = new Intl.ListFormat("en-US", {
+    style: "long",
+    type: "conjunction",
+}).format(aboutData);
+---
+
+{
+    about && about.length > 0 && (
+        <>
+            <dt class="label">Subjects</dt>
+            <dd class="about" set:html={`${aboutList}`} />
+        </>
+    )
+}

@@ -1,12 +1,11 @@
 ---
-layout: ../../components/BlogLayout.astro
+layout: ../../layouts/BlogLayout.astro
 title: "Let's Get Started"
 pubDate: 2024-11-18
 description: "This post should take us from an empty folder to a first commit and functional but bare demo TBR.FYI site."
 author: 'Steven Pate'
 tags: ["astro", "blogging", "astro", "learning in public"]
 ---
-## Let's get started
 
 I am choosing to build this project using [Astro](https://astro.build/). The ability to ship rendered HTML and less javascript with the options of using the [Astro Islands architecture](https://docs.astro.build/en/concepts/islands/) and potentially taking advantage of incremental static regeneration with [Netlify](https://www.netlify.com/) will give me the most flexibility, I think. I like that it is UI-framework agnostic, and can be as simple or as complex as I would like it to be.
 

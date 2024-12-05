@@ -1,7 +1,8 @@
 ---
 import { getCollection, getEntry } from "astro:content";
-import Layout from "@components/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import Book from "@components/Book.astro";
+import { mergeShelfEntries } from "src/ts/utils";
 
 export async function getStaticPaths() {
     const books = await getCollection("allBooks");
@@ -18,12 +19,14 @@ export async function getStaticPaths() {
     });
 }
 const { id } = Astro.props;
-const book: any = await getEntry("allBooks", id);
-const {
-    data: { title, name },
-} = book;
+const bookEntry: any = await getEntry("allBooks", id);
+
+const book = mergeShelfEntries(bookEntry.data.shelfEntries, "");
 ---
 
-<Layout title={name || title || id}>
-    <Book {id} displayFormat="full" showName={false} />
+<Layout
+    title={book.name || book.title || book.identifier || id}
+    displayTitle={false}
+>
+    <Book {id} displayFormat="full" />
 </Layout>

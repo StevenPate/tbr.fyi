@@ -1,7 +1,11 @@
 import { defineCollection, getCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
-import { shelfSchema, postSchema, bookSchema } from "./schemas";
-import { slugify } from "src/ts/utils";
+import {
+    shelfSchema,
+    postSchema,
+    bookSchema,
+    bookEntrySchema,
+} from "./schemas";
 
 const mdShelves = defineCollection({
     loader: glob({ pattern: ["*.md"], base: "src/content/shelves" }),
@@ -11,8 +15,8 @@ const mdShelves = defineCollection({
 const allShelves = defineCollection({
     loader: async () => {
         const mdShelves = [...(await getCollection("mdShelves"))];
-        
-        const allMdShelves:any = mdShelves.map((s) => {
+
+        const allMdShelves: any = mdShelves.map((s) => {
             const {
                 id,
                 data: { name, books },
@@ -33,13 +37,12 @@ const allShelves = defineCollection({
 
 const allBooks = defineCollection({
     loader: async () => {
-
         const mdShelves = [...(await getCollection("mdShelves"))];
-        
-        const shelves:any = mdShelves.map((s) => {
+
+        const shelves: any = mdShelves.map((s) => {
             const {
                 id,
-                data: { books }
+                data: { books },
             } = s;
             return {
                 id,
@@ -47,22 +50,40 @@ const allBooks = defineCollection({
             };
         });
 
-        const allBooks: z.infer<typeof bookSchema>[] = []
-        shelves.map((shelf:any) => {
-            const { books} = shelf;
-            books.map((book:any)=>{
-                book.shelfID = shelf.id
-                book.id = book.id || book?.isbn || slugify(book?.name || book?.title || '')
-                allBooks.push(book)
-            })
-        })
+        const allBooks: z.infer<typeof bookEntrySchema>[] = [];
+        shelves.map((shelf: any) => {
+            const { books, id: shelfID } = shelf;
+            console.log("🚀 ~ shelves.map ~ books:", books);
+
+            books?.map((b: z.infer<typeof bookSchema>) => {
+                const shelfEntry = {
+                    ...b,
+                    identifier: b.isbn || b.identifier || "",
+                    collectionInfo: {
+                        ...b.collectionInfo,
+                        sourceShelf: shelfID,
+                    },
+                };
+                let foundbook = allBooks.find(
+                    (entry: any) => entry.id === shelfEntry.identifier
+                );
+                if (foundbook) {
+                    foundbook.shelfEntries.push(shelfEntry);
+                } else {
+                    allBooks.push({
+                        id: shelfEntry.identifier,
+                        shelfEntries: [shelfEntry],
+                    });
+                }
+            });
+        });
         return allBooks as { id: string }[];
     },
-
-})
+    schema: bookEntrySchema,
+});
 
 const posts = defineCollection({
-    loader: glob({ pattern: "**\/*.md", base: "src/content/posts" }),
+    loader: glob({ pattern: "**/*.md", base: "src/content/posts" }),
     schema: postSchema,
 });
 
@@ -70,5 +91,5 @@ export const collections = {
     posts,
     mdShelves,
     allShelves,
-    allBooks
+    allBooks,
 };

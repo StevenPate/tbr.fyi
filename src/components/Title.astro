@@ -1,17 +1,28 @@
 ---
 const { book, showName = "true", showLink = "true" } = Astro.props;
-const {
-    data: { id, title: titleString = "Title Missing" },
-} = book;
-let title: string = showLink
-    ? `<a href="/books/${id}">${titleString}</a>`
+const { identifier, title: titleString = "Title Missing" } = book;
+
+let title: string = titleString.includes(":")
+    ? titleString.split(":")[0].trim()
     : titleString;
+const subtitle = titleString.includes(":")
+    ? titleString.split(":")[1].trim()
+    : undefined;
+
+title = showLink ? `<a href="/books/${identifier}">${title}</a>` : title;
 ---
 
 {
-    (title || id) && showName && (
+    (title || identifier) && showName && (
         <h2 class="title" data-title={title} itemprop="title">
             <Fragment set:html={title} />
         </h2>
+    )
+}
+{
+    subtitle && (
+        <h3 class="subtitle" data-subtitle={subtitle} itemprop="subtitle">
+            <Fragment set:html={subtitle} />
+        </h3>
     )
 }

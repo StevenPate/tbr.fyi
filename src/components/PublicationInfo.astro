@@ -1,0 +1,41 @@
+---
+
+const {
+    book: {publisher, publishDate, numberOfPages
+    },
+} = Astro.props;
+
+function formatDate(date: string) {
+    return new Date(date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        timeZone: "UTC",
+    });
+}
+---
+{
+    ((publisher) ||
+        (publishDate) ||
+        (numberOfPages)) && (
+            <dt class="publicationInfo">Publication Info</dt>
+            <dd class="publicationInfo">
+                {publisher && (
+                    <span
+                        itemprop="publisher"
+                        itemtype="https://schema.org/Organization"
+                        itemscope=""
+                    >
+                        {publisher && publisher}
+                    </span>
+                )}
+                {publishDate  && (
+                    <span itemprop="datePublished">
+                        {publishDate && ` (${formatDate(publishDate)})`}
+                    </span>
+                )}
+                {numberOfPages !== 0 && numberOfPages && (
+                    <span itemprop="numberOfPages">{` ${numberOfPages} pp.`}</span>
+                )}
+            </dd>
+    )
+}

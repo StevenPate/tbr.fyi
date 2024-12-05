@@ -1,0 +1,48 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+console.log("🚀 ~ posts:", posts);
+const title = "About";
+---
+
+<Layout {title}>
+    <section class="what">
+        <h2>What is this?</h2>
+        <p>
+            A thing to easily share collections of books via web pages and APIs.
+            Turns markdown, csv files, or JSON data into sharable formats and
+            creates an attracctive, accessible and data-friendly web
+            representations.
+        </p>
+    </section>
+    <section class="blog">
+        <h2>Blog posts</h2>
+        <div class="posts">
+            {
+                posts &&
+                    posts.reverse().map((post) => (
+                        <h4>
+                            <a href={`/posts/${post.id}`}>{post.data.title}</a>{" "}
+                            (
+                            {post.data.pubDate.toLocaleDateString("en-US", {
+                                timeZone: "UTC",
+                            })}
+                            )
+                        </h4>
+                    ))
+            }
+        </div>
+    </section>
+</Layout>
+<style>
+    .posts {
+        padding-top: var(--sm);
+        display: grid;
+        gap: var(--size-2);
+    }
+    section {
+        margin-top: var(--md);
+    }
+</style>

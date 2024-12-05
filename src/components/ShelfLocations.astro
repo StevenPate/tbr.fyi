@@ -1,0 +1,37 @@
+---
+import type { bookSchema } from "@content/schemas";
+
+import Shelf from "./Shelf.astro";
+import type { z } from "astro:content";
+
+const { book, shelfID } = Astro.props;
+const { shelfEntries } = book;
+
+const otherLocations = shelfEntries
+    .map((s: z.infer<typeof bookSchema>) => {
+        return s.collectionInfo?.sourceShelf;
+    })
+    .filter((location: string) => location !== shelfID);
+
+let onThisShelf = shelfID ? true : false;
+let shelvesHeader = onThisShelf ? "Also on " : "On ";
+shelvesHeader =
+    otherLocations.length > 1
+        ? shelvesHeader + " these shelves:"
+        : shelvesHeader + "this shelf:";
+---
+
+{
+    otherLocations.length > 0 && (
+        <aside class="shelfLocations">
+            <div class="label">{shelvesHeader}</div>
+            <ul class="links">
+                {otherLocations.map((id: string) => (
+                    <li>
+                        <Shelf {id} displayFormat="link" />
+                    </li>
+                ))}
+            </ul>
+        </aside>
+    )
+}

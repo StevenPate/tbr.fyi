@@ -1,0 +1,45 @@
+---
+const {
+    book: {
+        collectionInfo: {
+            dateCreated = "2024-01-01T22:00:29.773Z",
+            dateModified = new Date(),
+            dateFinished = null,
+        },
+    },
+} = Astro.props;
+
+function formatDate(date: string) {
+    return new Date(date).toLocaleDateString("en-US", {
+        timeZone: "UTC",
+    });
+}
+---
+
+{
+    (dateCreated || dateModified || dateFinished) && (
+        <div class="dates">
+            {dateFinished && (
+                <div class="date" data-date="finished" itemprop="dateFinished">
+                    Finished: {formatDate(dateFinished)}
+                </div>
+            )}
+            {dateCreated && (
+                <div class="date">
+                    Added:{" "}
+                    <span data-date="added" itemprop="dateAdded">
+                        {formatDate(dateCreated)}
+                    </span>
+                </div>
+            )}
+            {dateModified && (
+                <div class="date">
+                    Modified:{" "}
+                    <span data-date="modified" itemprop="dateModified">
+                        {formatDate(dateModified)}
+                    </span>
+                </div>
+            )}
+        </div>
+    )
+}

@@ -16,7 +16,12 @@ books.map((book: any) => {
 ---
 
 {
-    displayFormat && (
+    displayFormat && displayFormat === "link" && (
+        <a href={`/shelves/${id}`}>{name && showName && name}</a>
+    )
+}
+{
+    displayFormat && displayFormat !== "link" && (
         <div
             class={`shelf ${displayFormat}`}
             data-display-format={displayFormat}
@@ -32,7 +37,7 @@ books.map((book: any) => {
                 {books && (
                     <div class="books">
                         {books.map((book: any) => (
-                            <Book id={book.id} showLink={false} />
+                            <Book id={book.id} showLink={false} shelfID={id} />
                         ))}
                     </div>
                 )}

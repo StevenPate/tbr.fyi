@@ -1,8 +1,70 @@
 ---
-const { book } = Astro.props;
-const {
-    data: { notes },
-} = book;
+import type { z } from "astro:content";
+import { bookSchema } from "../content/schemas";
+import Shelf from "./Shelf.astro";
+
+const { book, shelfID } = Astro.props;
+const { shelfEntries: shelfEntriesArray } = book;
+
+const currentShelf = shelfEntriesArray.find(
+    (shelfEntry: z.infer<typeof bookSchema>) =>
+        shelfEntry.collectionInfo?.sourceShelf === shelfID
+);
+const shelfEntries = currentShelf ? [currentShelf] : shelfEntriesArray;
+
+const allNotes = shelfEntries
+    .map((shelfEntry: z.infer<typeof bookSchema>) => {
+        if (!shelfEntry?.collectionInfo?.notes)
+            return { content: null, attribution: null };
+
+        const {
+            collectionInfo: { notes },
+        } = shelfEntry;
+
+        notes.attribution =
+            shelfEntry.collectionInfo?.sourceShelf === shelfID
+                ? ""
+                : notes.attribution;
+        notes.source =
+            shelfEntry.collectionInfo?.sourceShelf === shelfID
+                ? ""
+                : shelfEntry.collectionInfo?.sourceShelf;
+        return notes;
+    })
+    .filter((notes: { content: string }) => notes.content !== null);
 ---
 
-{notes && <div class="notes">{notes}</div>}
+{
+    allNotes.length > 0 && (
+        <div data-notes itemprop="notes" class="notes">
+            <div class="label">Notes</div>
+            <ul>
+                {allNotes.map(
+                    (notes: {
+                        content: string;
+                        attribution: string;
+                        source: string;
+                    }) => (
+                        <li class="note">
+                            <span class="content">{notes.content} </span>
+                            {notes.attribution && (
+                                <span class="attribution">
+                                    {notes.attribution}
+                                </span>
+                            )}
+                            {notes.source && (
+                                <span class="source">
+                                    <Shelf
+                                        id={notes.source}
+                                        displayFormat="link"
+                                        displayIcon={false}
+                                    />
+                                </span>
+                            )}
+                        </li>
+                    )
+                )}
+            </ul>
+        </div>
+    )
+}
