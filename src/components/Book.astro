@@ -1,18 +1,20 @@
 ---
+import EleventyFetch from "@11ty/eleventy-fetch";
 import { getEntry } from "astro:content";
 
 import { mergeShelfEntries } from "../ts/utils";
 
 import About from "./About.astro";
 import Author from "./Author.astro";
+import Award from "./Award.astro";
 import Cover from "./Cover.astro";
 import Dates from "./Dates.astro";
 import Description from "./Description.astro";
 import ISBN from "./ISBN.astro";
 import Notes from "./Notes.astro";
 import PublicationInfo from "./PublicationInfo.astro";
-import Title from "./Title.astro";
 import ShelfLocations from "./ShelfLocations.astro";
+import Title from "./Title.astro";
 
 const {
     id,
@@ -21,9 +23,40 @@ const {
     shelfID = "",
 } = Astro.props;
 const bookEntry: any = await getEntry("allBooks", id);
+let book = mergeShelfEntries(bookEntry.data.shelfEntries, shelfID);
+
+let bookData: any = {};
+const isbndbAPI = `https://api2.isbndb.com/book/${id}`;
+try {
+    bookData = await EleventyFetch(isbndbAPI, {
+        type: "json",
+        fetchOptions: {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: import.meta.env.ISBNDB_TOKEN,
+            },
+        },
+    });
+} catch {
+    console.log("response error is:", Response.error());
+}
+
+const { book: bookDataFromAPI } = bookData;
+const bookFromAPI = {
+    publisher: bookDataFromAPI.publisher,
+    description: bookDataFromAPI.synopsis,
+    image: bookDataFromAPI.image,
+    numberOfPages: bookDataFromAPI.pages.toString(),
+    datePublished: bookDataFromAPI.date_published,
+    subjexts: bookDataFromAPI.subjects,
+    author: bookDataFromAPI.authors,
+    title: bookDataFromAPI.title_long,
+};
+
+book = { ...bookFromAPI, ...book };
 
 const props = {
-    book: mergeShelfEntries(bookEntry.data.shelfEntries, shelfID),
+    book,
     displayFormat,
     showName,
     shelfID,
@@ -41,6 +74,7 @@ const props = {
             <PublicationInfo {...props} />
             <Description {...props} />
             <About {...props} />
+            <Award {...props} />
         </dl>
         <div class="collectionInfo">
             <Notes {...props} />

@@ -1,0 +1,23 @@
+---
+const {
+    book: { award = [] },
+} = Astro.props;
+
+const awardData = award.map((a: string) => {
+    return `<span itemprop="award" data-award=${a}>${a}</span>`;
+});
+
+const awardList = new Intl.ListFormat("en-US", {
+    style: "long",
+    type: "conjunction",
+}).format(awardData);
+---
+
+{
+    award && award.length > 0 && (
+        <>
+            <dt class="label">Subjects</dt>
+            <dd class="award" set:html={`${awardList}`} />
+        </>
+    )
+}

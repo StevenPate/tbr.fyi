@@ -3,6 +3,7 @@ import { z } from "astro:content";
 export const bookSchema = z.object({
     about: z.array(z.string().optional()).optional(),
     author: z.array(z.string().optional()).optional(),
+    award: z.array(z.string().optional()).optional(),
     bookFormat: z
         .enum([
             "AudiobookFormat",
