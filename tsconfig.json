@@ -11,8 +11,10 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
       "@content/*": ["src/content/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@settings/*": ["src/settings/*"],
       "@styles/*": ["src/styles/*"],
     }
   }

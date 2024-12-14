@@ -1,14 +1,13 @@
 ---
 const {
-    book,
     book: { translator = [] },
     showContributors = true,
 } = Astro.props;
 
 const translatorsData =
     translator.length > 0
-        ? translator.map((author: string) => {
-              return `<span itemprop="translator" data-author={translator}>${translator}</span>`;
+        ? translator.map((translator: string) => {
+              return `<span itemprop="translator" data-translator={translator}>${translator}</span>`;
           })
         : "";
 
