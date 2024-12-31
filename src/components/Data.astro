@@ -1,0 +1,16 @@
+---
+const { book } = Astro.props;
+---
+
+{
+    book && (
+            <dt class="data">Data</dt>
+            <dd class="data">
+                <details class="data">
+                    <summary>JSON</summary>
+                    <pre>{JSON.stringify(book, null, 2)}</pre>
+                </details>
+            </dd>
+        
+    )
+}

@@ -1,10 +1,13 @@
 ---
 import { getEntry } from "astro:content";
 import { mergeShelfEntries } from "../ts/utils";
-import { hasAllFields, getAPIData } from "../api/baseAPI.ts";
+import { hasAllFields, getAPIData } from "../apis/baseAPI.ts";
+
+import About from "./About.astro";
 import Author from "./Author.astro";
 import Award from "./Award.astro";
 import Cover from "./Cover.astro";
+import Data from "./Data.astro";
 import Dates from "./Dates.astro";
 import Description from "./Description.astro";
 import ISBN from "./ISBN.astro";
@@ -12,7 +15,7 @@ import Notes from "./Notes.astro";
 import PublicationInfo from "./PublicationInfo.astro";
 import ShelfLocations from "./ShelfLocations.astro";
 import Title from "./Title.astro";
-import About from "./About.astro";
+import Weight from "./Weight.astro";
 
 const {
     id,
@@ -25,6 +28,14 @@ const bookEntries: any = await getEntry("allBooks", id);
 let book = mergeShelfEntries(bookEntries.data.shelfEntries, shelfID);
 book = hasAllFields(book) ? book : await getAPIData(book);
 
+const style =
+    displayFormat == "card"
+        ? `
+            background-image: url(${book?.image});
+            background-size: 10000%;
+        `
+        : ``;
+
 const props = {
     book,
     displayFormat,
@@ -33,28 +44,37 @@ const props = {
 };
 ---
 
-<div class={`book ${displayFormat}`} data-display-format={displayFormat}>
-    <div class="info">
+<div
+    class={`book ${displayFormat}`}
+    data-display-format={displayFormat}
+    itemscope
+    itemtype="https://schema.org/Book"
+    {style}
+>
+    <dl class="work details">
         <Title {...props} />
         <Author {...props} />
-    </div>
-    <div class="details">
-        <dl class="bookData">
-            <ISBN {...props} />
-            <PublicationInfo {...props} />
-            <Description {...props} />
-            <About {...props} />
-            <Award {...props} />
-        </dl>
-        <div class="collectionInfo">
-            <Notes {...props} />
-            <ShelfLocations {...props} />
-            <Dates {...props} />
-        </div>
-    </div>
-    <Cover {...props} />
-    <details class="data">
-        <summary>Book Data</summary>
-        <pre>{JSON.stringify(book, null, 2)}</pre>
-    </details>
+    </dl>
+    <dl class="images details">
+        <Cover {...props} />
+    </dl>
+    <dl class="edition details">
+        <!-- <Cover {...props} /> -->
+        <ISBN {...props} />
+        <PublicationInfo {...props} />
+        <Weight {...props} />
+    </dl>
+    <dl class="descriptive details">
+        <Notes {...props} />
+        <Description {...props} />
+        <About {...props} />
+        <Award {...props} />
+    </dl>
+    <dl class="collection details">
+        <ShelfLocations {...props} />
+        <Dates {...props} />
+    </dl>
+    <dl class="data details">
+        <Data {...props} />
+    </dl>
 </div>

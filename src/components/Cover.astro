@@ -5,8 +5,9 @@ const { id, image = "/images/placeholder.png", title } = book;
 
 {
     image && (
-        <div class="cover" itemprop="cover">
-            <img src={image} alt={title || id} />
-        </div>
+            <dt class="cover">Cover</dt>
+            <dd class="cover">
+                <img src={image} itemprop="image" data-cover={image} alt={title || id} />
+            </dd>
     )
 }

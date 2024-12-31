@@ -1,0 +1,21 @@
+---
+const {
+    book: { weight = {} },
+} = Astro.props;
+
+const weightString = weight
+    ? `${Math.round(weight.value * 100) / 100} ${weight.unit}`
+    : "n/a";
+---
+
+{
+    weightString && (
+        <dt class="weight">Weight</dt>
+        <dd class="weight">
+            <span
+                data-weight={weight} 
+                itemprop="weight"
+                set:html={weightString} />
+        </dd>
+    )
+}

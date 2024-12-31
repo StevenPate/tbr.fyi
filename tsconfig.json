@@ -15,6 +15,7 @@
       "@content/*": ["src/content/*"],
       "@layouts/*": ["src/layouts/*"],
       "@settings/*": ["src/settings/*"],
+      "@site": ["src/site.json"],
       "@styles/*": ["src/styles/*"],
     }
   }

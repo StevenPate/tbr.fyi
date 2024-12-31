@@ -15,9 +15,7 @@ const aboutList = new Intl.ListFormat("en-US", {
 
 {
     about && about.length > 0 && (
-        <>
-            <dt class="label">Subjects</dt>
+            <dt class="about">Subjects</dt>
             <dd class="about" set:html={`${aboutList}`} />
-        </>
     )
 }

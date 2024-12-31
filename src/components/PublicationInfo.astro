@@ -8,7 +8,6 @@ const {
 function formatDate(date: string) {
     return new Date(date).toLocaleDateString("en-US", {
         year: "numeric",
-        month: "long",
         timeZone: "UTC",
     });
 }
@@ -21,20 +20,21 @@ function formatDate(date: string) {
             <dd class="publicationInfo">
                 {publisher && (
                     <span
+                        data-publisher={publisher} 
                         itemprop="publisher"
-                        itemtype="https://schema.org/Organization"
-                        itemscope=""
-                    >
-                        {publisher && publisher}
-                    </span>
+                        set:html={publisher} />
                 )}
                 {publishDate  && (
-                    <span itemprop="datePublished">
-                        {publishDate && ` (${formatDate(publishDate)})`}
-                    </span>
+                    <span
+                        data-publishDate={publishDate} 
+                        itemprop="publishDate"
+                        set:html={` (${formatDate(publishDate)})`} />
                 )}
                 {numberOfPages !== 0 && numberOfPages && (
-                    <span itemprop="numberOfPages">{` ${numberOfPages} pp.`}</span>
+                    <span
+                        data-numberOfPages={numberOfPages} 
+                        itemprop="numberOfPages"
+                        set:html={` ${numberOfPages} pp.`} />
                 )}
             </dd>
     )

@@ -1,8 +1,15 @@
 import EleventyFetch from "@11ty/eleventy-fetch";
 import type { bookSchema } from "@content/schemas";
 import type { z } from "astro:content";
+import { config } from "@site";
+const {
+    apiData: { fetch, services },
+} = config;
 
 export async function getIsbnDB(book: z.infer<typeof bookSchema>) {
+    if (!fetch || !services.isbnDB) {
+        return book;
+    }
     const { isbn } = book;
     let bookData: any = {};
     const isbndbAPI = `https://api2.isbndb.com/book/${isbn}`;
@@ -20,15 +27,19 @@ export async function getIsbnDB(book: z.infer<typeof bookSchema>) {
         console.log("response error is:", Response.error());
     }
     const { book: bookDataFromAPI } = bookData;
+    let weight = bookDataFromAPI?.dimensions_structured?.weight
+        ? bookDataFromAPI?.dimensions_structured?.weight
+        : null;
     const bookFromAPI = {
         publisher: bookDataFromAPI.publisher,
-        description: bookDataFromAPI.synopsis,
+        publisherDescription: bookDataFromAPI.synopsis,
         image: bookDataFromAPI.image,
         numberOfPages: bookDataFromAPI.pages.toString(),
-        datePublished: bookDataFromAPI.date_published,
-        subjexts: bookDataFromAPI.subjects,
+        publishDate: bookDataFromAPI.date_published,
+        subjects: bookDataFromAPI.subjects,
         author: bookDataFromAPI.authors,
         title: bookDataFromAPI.title_long,
+        weight,
     };
 
     // const bookWithData = { ...bookFromAPI, ...book };

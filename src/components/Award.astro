@@ -16,8 +16,8 @@ const awardList = new Intl.ListFormat("en-US", {
 {
     award && award.length > 0 && (
         <>
-            <dt class="label">Subjects</dt>
-            <dd class="award" set:html={`${awardList}`} />
+            <dt class="awards">Awards</dt>
+            <dd class="awards" set:html={`${awardList}`} />
         </>
     )
 }

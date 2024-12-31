@@ -36,35 +36,35 @@ const allNotes = shelfEntries
 
 {
     allNotes.length > 0 && (
-        <div data-notes itemprop="notes" class="notes">
-            <div class="label">Notes</div>
-            <ul>
-                {allNotes.map(
-                    (notes: {
-                        content: string;
-                        attribution: string;
-                        source: string;
-                    }) => (
-                        <li class="note">
-                            <span class="content">{notes.content} </span>
-                            {notes.attribution && (
-                                <span class="attribution">
-                                    {notes.attribution}
-                                </span>
-                            )}
-                            {notes.source && (
-                                <span class="source">
-                                    <Shelf
-                                        id={notes.source}
-                                        displayFormat="link"
-                                        displayIcon={false}
-                                    />
-                                </span>
-                            )}
-                        </li>
-                    )
-                )}
-            </ul>
-        </div>
+    <dt class="notes">Notes</dt>
+    <dd class="notes">
+        <ul>
+            {allNotes.map(
+                (notes: {
+                    content: string;
+                    attribution: string;
+                    source: string;
+                }) => (
+                    <li class="note">
+                        <span class="content">{notes.content} </span>
+                        {notes.attribution && (
+                            <span class="attribution">
+                                {notes.attribution}
+                            </span>
+                        )}
+                        {notes.source && (
+                            <span class="source">
+                                <Shelf
+                                    id={notes.source}
+                                    displayFormat="link"
+                                    displayIcon={false}
+                                />
+                            </span>
+                        )}
+                    </li>
+                )
+            )}
+        </ul>
+    </dd>
     )
 }

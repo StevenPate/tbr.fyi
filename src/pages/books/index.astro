@@ -15,7 +15,7 @@ const title = "Books";
     </p>
     {
         books && (
-            <div class="books" data-display-contents="card">
+            <div class="books" data-display-contents-format="card">
                 {books.map((book: { id: string }) => (
                     <Book id={book.id} displayFormat="card" />
                 ))}

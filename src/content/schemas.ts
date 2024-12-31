@@ -27,6 +27,7 @@ export const bookSchema = z.object({
     publisherDescription: z.string().optional(),
     title: z.string().optional(),
     translator: z.array(z.string().optional()).optional(),
+    weight: z.number().optional(),
     collectionInfo: z
         .object({
             sourceShelf: z.string().optional(),

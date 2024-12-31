@@ -3,6 +3,7 @@ import { getCollection, getEntry } from "astro:content";
 import Layout from "@layouts/Layout.astro";
 import Book from "@components/Book.astro";
 import { mergeShelfEntries } from "src/ts/utils";
+import { getAPIData, hasAllFields } from "src/apis/baseAPI";
 
 export async function getStaticPaths() {
     const books = await getCollection("allBooks");
@@ -21,11 +22,12 @@ export async function getStaticPaths() {
 const { id } = Astro.props;
 const bookEntry: any = await getEntry("allBooks", id);
 
-const book = mergeShelfEntries(bookEntry.data.shelfEntries, "");
+let book = mergeShelfEntries(bookEntry.data.shelfEntries, "");
+book = hasAllFields(book) ? book : await getAPIData(book);
 ---
 
 <Layout
-    title={book.name || book.title || book.identifier || id}
+    title={book.title || book.name || book.identifier || id}
     displayTitle={false}
 >
     <Book {id} displayFormat="full" />

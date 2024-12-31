@@ -1,0 +1,21 @@
+{
+    "config": {
+        "apiData": {
+            "fetch": true,
+            "requireFields": true,
+            "required": {
+                "author": true,
+                "description": true,
+                "image": true,
+                "numberOfPages": true,
+                "publishDate": true,
+                "publisher": true,
+                "title": true
+            },
+            "services": {
+                "googleBooks": true,
+                "isbnDB": true
+            }
+        }
+    }
+}

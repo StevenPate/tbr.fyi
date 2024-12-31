@@ -6,10 +6,20 @@ const {
 ---
 
 {!isbn && id && 
-    <dt class="id">ID</dt>
-    <dd id={id} data-id={id}>{id}</dd>
+    <dt class="ID">ID</dt>
+    <dd class="ID">
+        <span
+            data-id={id} 
+            itemprop="id"
+            set:html={id} />
+    </dd>
 }
 {isbn && 
     <dt class="isbn">ISBN</dt>
-    <dd id={isbn} data-isbn={isbn}>{isbn}</dd>
+    <dd class="isbn">
+        <span
+            data-isbn={isbn} 
+            itemprop="isbn"
+            set:html={isbn} />
+    </dd>
 }

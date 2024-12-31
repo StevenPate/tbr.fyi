@@ -23,15 +23,15 @@ shelvesHeader =
 
 {
     otherLocations.length > 0 && (
-        <aside class="shelfLocations">
-            <div class="label">{shelvesHeader}</div>
-            <ul class="links">
-                {otherLocations.map((id: string) => (
-                    <li>
-                        <Shelf {id} displayFormat="link" />
-                    </li>
-                ))}
-            </ul>
-        </aside>
+    <dt class="shelfLocations">{shelvesHeader}</dt>
+    <dd class="shelfLocations">
+        <ul class="links">
+            {otherLocations.map((id: string) => (
+                <li>
+                    <Shelf {id} displayFormat="link" />
+                </li>
+            ))}
+        </ul>
+    </dd>
     )
 }

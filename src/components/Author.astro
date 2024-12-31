@@ -24,7 +24,13 @@ const props = { showTranslator, book };
 
 {
     author && showAuthor && (
-        <h4 class="author" itemprop="author" set:html={`by ${authorList}`} />
+        <dt class="author">Author(s)</dt>
+        <dd class="author">
+            <span
+                data-author={author} 
+                itemprop="author"
+                set:html={`by ${authorList}`} />
+        </dd>
     )
 }
 {showTranslator && <Translator {...props} />}

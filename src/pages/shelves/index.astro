@@ -11,7 +11,7 @@ const title = "Shelves";
     <p>Here, we will add some shelves of books. For now, we just have one...</p>
     {
         shelves && (
-            <div class="shelves" data-display-contents="card">
+            <div class="shelves" data-display-contents-format="card">
                 {shelves.map((shelf: { id: string }) => (
                     <Shelf id={shelf.id} displayFormat="card" />
                 ))}

@@ -1,25 +1,27 @@
 ---
-
 const { book } = Astro.props;
 
-let description = book?.description || book?.publisherDescription  || null
-        
+let description = book?.description || book?.publisherDescription || null;
+
 let descriptionHeader = book?.description
     ? "Description"
     : book?.publisherDescription
-        ? "Publisher Description"
-        : null;
-
+      ? "Publisher Description"
+      : null;
 ---
 
 {
     description && (
-            <dt
-                class="description"
-                set:html={descriptionHeader} />
-            <dd
+        <dt class="description">Description</dt>
+        <dd class="description">
+            <details>
+                <summary class="description" set:html={descriptionHeader} />
+            <div
                 itemprop="description"
                 class="description"
-                set:html={description} />
+                set:html={description}
+            />
+            </details>
+        </dd>
     )
 }

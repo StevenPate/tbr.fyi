@@ -18,10 +18,14 @@ function formatDate(date: string) {
 
 {
     (dateCreated || dateModified || dateFinished) && (
-        <div class="dates">
+            <dt class="dates">Dates</dt>
+            <dd class="dates">
             {dateFinished && (
-                <div class="date" data-date="finished" itemprop="dateFinished">
-                    Finished: {formatDate(dateFinished)}
+                <div class="date">
+                    Finished:{" "}
+                    <span data-date-finished="finished" itemprop="dateFinished">
+                        {formatDate(dateFinished)}
+                    </span>
                 </div>
             )}
             {dateCreated && (
@@ -40,6 +44,6 @@ function formatDate(date: string) {
                     </span>
                 </div>
             )}
-        </div>
+            </dd>
     )
 }
