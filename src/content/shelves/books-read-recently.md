@@ -1,6 +1,8 @@
 ---
 name: "Books I've read recently*"
 books: 
+  - isbn: "9780593544808"
+  - isbn: "9781942658603"
   - isbn: "9780300275421"
     collectionInfo:
       notes:
