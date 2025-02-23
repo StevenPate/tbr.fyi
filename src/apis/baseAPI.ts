@@ -22,8 +22,8 @@ export function hasAllFields(book: z.infer<typeof bookSchema>) {
 }
 export async function getAPIData(book: z.infer<typeof bookSchema>) {
     const bookWithData: any = {
-        ...(await getGoogleBooks(book)),
         ...(await getIsbnDB(book)),
+        ...(await getGoogleBooks(book)),
     };
     return bookWithData;
 }

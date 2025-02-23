@@ -12,12 +12,17 @@
     "@11ty/eleventy-fetch": "^5.0.1",
     "@astrojs/check": "^0.9.4",
     "astro": "^5.0.0-beta.8",
+    "fetch": "^1.1.0",
+    "node-fetch": "^3.3.2",
     "open-props": "^1.7.7",
     "typescript": "^5.6.3"
   },
   "devDependencies": {
+    "@types/node": "^22.13.4",
+    "fs": "^0.0.1-security",
     "isbn3": "^1.2.4",
     "netlify-plugin-cache": "^1.0.3",
-    "netlify-plugin-cache-folder": "^0.0.8"
+    "netlify-plugin-cache-folder": "^0.0.8",
+    "path": "^0.12.7"
   }
 }

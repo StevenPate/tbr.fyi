@@ -20,8 +20,22 @@
     --khaki: #A4A190ff;
     --trans-khaki: rgb(164 161 144 / 20%);
     --trans-white: rgb(242 243 245 / 61%);
-
+    font-family: "Caudex", serif;
     }
+
+/* @link https://utopia.fyi/type/calculator?c=320,18,1.2,1240,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+:root {
+    --step--2: clamp(0.7813rem, 0.7747rem + 0.0326vw, 0.8rem);
+    --step--1: clamp(0.9375rem, 0.9158rem + 0.1087vw, 1rem);
+    --step-0: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+    --step-1: clamp(1.35rem, 1.2761rem + 0.3696vw, 1.5625rem);
+    --step-2: clamp(1.62rem, 1.5041rem + 0.5793vw, 1.9531rem);
+    --step-3: clamp(1.944rem, 1.771rem + 0.8651vw, 2.4414rem);
+    --step-4: clamp(2.3328rem, 2.0827rem + 1.2504vw, 3.0518rem);
+    --step-5: clamp(2.7994rem, 2.4462rem + 1.7658vw, 3.8147rem);
+  }
+
 
 
 @media (prefers-color-scheme: dark) {
@@ -32,18 +46,6 @@
         --surface-2:var(--ash-gray);
         --surface-3:var(--khaki);
         --surface-3t: var(--trans-khaki);
-        /* --link: var(--indigo-3);
-        --link-visited: var(--purple-3);
-        --text-1: var(--gray-1);
-        --text-2: var(--gray-4);
-        --surface-1: var(--gray-9);
-        --surface-2: var(--gray-8);
-        --surface-3: var(--gray-7);
-        --surface-4: var(--gray-6);
-        --scrollthumb-color: var(--gray-6);
-        --shadow-strength: 10%;
-        --shadow-color: 220 40% 2%;
-        color-scheme: dark; */
     }
     :where(a):where(:hover) {
         text-decoration-color: var(--timberwolf);
@@ -77,6 +79,10 @@ header {
         }
     }
 }
+h1,h2,h3,h4,h5,h6{
+    font-family: "Work Sans", serif;
+    font-weight:600;
+}
 p {
     margin:var(--size-3) 0;
 }
@@ -92,6 +98,8 @@ details {
 details summary {
     background-color: inherit;
 }
+
+
 
 .button {
     font-size: var(--font-size-1);
@@ -129,6 +137,10 @@ details summary {
         display:none;
     }
 }
+.shelf.list {
+    .data,
+    .actions { display:none}
+}
 
 .books {
     display:grid;
@@ -158,7 +170,8 @@ details summary {
 
 .book[data-display-format="full"] {
     padding:var(--md);
-    gap: var(--md);
+    column-gap: var(--md);
+    row-gap: var(--sm);
     border: 2px dashed var(--surface-3);
     background-color: var(--surface-3t);
     display:grid;
@@ -178,6 +191,7 @@ details summary {
         display:block;
         grid-row: 1;
         grid-column: 2;
+        /* max-height: var(--sm); */
         && .title {
             font-size: var(--font-size-5);
             font-weight: bold;
@@ -198,11 +212,18 @@ details summary {
         gap:var(--xs);
         grid-row: 2;
         grid-column: 2;
+        && dt.description, && dd.description {
+            max-inline-size: var(--size-content-3);
+        }
         && dd.notes {
+            max-inline-size: var(--size-content-3);
             && ul {
                 list-style-type: none;
                 padding:var(--sm);
                 background-color:var(--surface-3t);
+                && li {
+                    max-inline-size: var(--size-content-3);
+                }
             }
             && .note {
                 display: grid;
@@ -290,6 +311,22 @@ details summary {
             grid-column: 1 / span 2;
         }
     }
+}
+
+.book[data-display-format="list"] {
+    
+    dl dt {display:none;}
+    dl.details {margin-bottom:0;font-size:var(--font-size-1);}
+    dl.work {display:flex; gap:1ch;
+    && .author {
+        gap:1ch;
+    }}
+    dl.edition {display:flex; gap:1ch; flex-direction: row-reverse;justify-content: flex-end;}
+    .images,
+    .weight,
+    .descriptive,
+    .collection,
+    .data {display:none;}
 }
 
 

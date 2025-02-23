@@ -1,8 +1,23 @@
 ---
 name: "Books I've read recently*"
 books: 
+  - isbn: "9781647691943"
+    description: "A memoir which blends story and science to reveal the struggles and joys of one wildlife biologist."
+    collectionInfo:
+      notes:
+        content: "Well-written glimpses into the work of a PNW wildlife biologist working for the National Forest Service are woven into the backdrop of Howell's personal journey. You would be hard-pressed to find a better account of the changing landscape of forests in the last 30 years, especially in the altered landscape of the Northwest Forest Plan's realignment of the forest service's goals, from someone who cares about these places. There is also plenty about specific animals like Olympic marmots, martens, marbled murrelets, spotted and barred owls, salamanders, and fishers, along with accounts from decades at the front lines of forest fires."
+  - isbn: "9781250353528"
+  - isbn: "9780156031028"
+  - isbn: "9781938912849"
+  - isbn: "9781662602368"
+  - isbn: "9781929355273"
+  - isbn: "9780316216371"
+    collectionInfo:
+      notes:
+        content: "Put in my hands with a firm recommendation by my dad. He was right, as usual."
   - isbn: "9780593544808"
   - isbn: "9781942658603"
+  - isbn: "9780375708473"
   - isbn: "9780300275421"
     collectionInfo:
       notes:

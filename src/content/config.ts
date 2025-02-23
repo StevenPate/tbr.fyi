@@ -51,6 +51,7 @@ const allBooks = defineCollection({
         });
 
         const allBooks: z.infer<typeof bookEntrySchema>[] = [];
+
         shelves.map((shelf: any) => {
             const { books, id: shelfID } = shelf;
 
@@ -70,7 +71,10 @@ const allBooks = defineCollection({
                     foundbook.shelfEntries.push(shelfEntry);
                 } else {
                     allBooks.push({
-                        id: shelfEntry.identifier,
+                        id:
+                            shelfEntry.identifier ||
+                            shelfEntry.id ||
+                            shelfEntry.isbn,
                         shelfEntries: [shelfEntry],
                     });
                 }

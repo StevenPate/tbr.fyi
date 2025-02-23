@@ -86,5 +86,10 @@ export async function getGoogleBooks(book: z.infer<typeof bookSchema>) {
             null,
         // googleBooksLink: bookPropertiesData.infoLink,
     };
-    return { ...bookFromAPI, ...book };
+    const filteredBookFromAPI = Object.fromEntries(
+        Object.entries(bookFromAPI).filter(([_, value]) => value !== null)
+    );
+
+    return { ...filteredBookFromAPI, ...book };
+    // return { ...bookFromAPI, ...book };
 }

@@ -26,7 +26,7 @@ const {
 
 const bookEntries: any = await getEntry("allBooks", id);
 let book = mergeShelfEntries(bookEntries.data.shelfEntries, shelfID);
-book = hasAllFields(book) ? book : await getAPIData(book);
+book = hasAllFields(book) ? book : { ...book, ...(await getAPIData(book)) };
 
 const style =
     displayFormat == "card"
