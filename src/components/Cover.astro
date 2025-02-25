@@ -1,13 +1,47 @@
 ---
-const { book } = Astro.props;
-const { id, image = "/images/placeholder.png", title } = book;
+import { Image } from "astro:assets";
+import fs from "fs";
+import path from "path";
+import fetch from "node-fetch";
+const { book, displayLink = "true", } = Astro.props;
+const { identifier, image = "/images/placeholder.png", title } = book;
+console.log("🚀 ~ identifier:", identifier)
+
+let linkProps = displayLink ? { href: `/books/${identifier}` } : {};
+
+async function cacheImage(url:string, dest:string) {
+    console.log("🚀 ~ cacheImage ~ url:", url)
+    // const response = await fetch(url);
+    try {
+        const response = await fetch(url);
+    const buffer = await response.buffer();
+    fs.writeFileSync(dest, buffer);
+} catch (error) {
+  // TypeError: Failed to fetch
+  console.log('There was an error', error);
+}
+}
+const cachedFilePath = path.join("./public/images", `${identifier}.jpg`);
+if (!fs.existsSync(cachedFilePath)) {
+    await cacheImage(image, cachedFilePath);
+}
+const cachedImagePath = path.join("/images", `${identifier}.jpg`);
+console.log("🚀 ~ cachedImagePath:", cachedImagePath)
 ---
 
 {
-    image && (
+    image && cachedImagePath && (
             <dt class="cover">Cover</dt>
             <dd class="cover">
-                <img src={image} itemprop="image" data-cover={image} alt={title || id} />
+                <img src={image} itemprop="image" data-cover={image} alt={title || identifier} />
+                {/* <a {...linkProps}>
+                <Image
+                    src={cachedImagePath}
+                    alt={`Cover image for ${title}`}
+                    width={180}
+                    height={300}
+                />
+            </a> */}
             </dd>
     )
 }
