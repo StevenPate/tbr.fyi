@@ -1,0 +1,249 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("posts");
+const title = "Privacy";
+---
+
+<Layout {title}>
+    <section>
+    <p>This is an extract from the complete Privacy Policy</p>
+ <h2>Privacy Policy - SMS Communications Section</h2>
+    
+    <p>This is an extract of TBR.fyi's main privacy policy at <code>https://tbr.fyi/privacy</code>.</p>
+    
+    <hr>
+    
+    <h2>SMS Communications &amp; Text-to-Shelf Service</h2>
+    
+    <h3>Overview</h3>
+    <p>When you enable the Text-to-Shelf feature on TBR.fyi, you consent to receive SMS (text) messages from us at the phone number you provide. This section explains what messages you'll receive, how to opt-out, and how we handle your phone number.</p>
+    
+    <h3>What Messages You'll Receive</h3>
+    <p>By enabling Text-to-Shelf, you will receive the following types of SMS messages:</p>
+    
+    <ol>
+        <li>
+            <strong>Verification Messages</strong>
+            <ul>
+                <li>Purpose: Confirm you own the phone number</li>
+                <li>Frequency: One-time when enabling SMS, or when re-verifying</li>
+                <li>Example: "Your TBR.fyi verification code is: 847293"</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Book Addition Confirmations</strong>
+            <ul>
+                <li>Purpose: Confirm your book was successfully added to your reading list</li>
+                <li>Frequency: Each time you text us a book title, ISBN, or link</li>
+                <li>Example: "✓ Added to your TBR: 'The Overstory' by Richard Powers"</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Local Availability Notifications</strong> (Optional)
+            <ul>
+                <li>Purpose: Alert you when books on your list become available at local bookstores</li>
+                <li>Frequency: Based on inventory changes and your notification preferences</li>
+                <li>Example: "📚 'Demon Copperhead' in stock at Powell's Books!"</li>
+                <li>Note: You can enable/disable these notifications in your account settings</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Service Updates</strong> (Rare)
+            <ul>
+                <li>Purpose: Critical information about the TBR.fyi service</li>
+                <li>Frequency: Rarely - only for important service changes</li>
+                <li>Example: Scheduled maintenance, major feature updates, terms changes</li>
+            </ul>
+        </li>
+        <li>
+            <strong>Help Responses</strong>
+            <ul>
+                <li>Purpose: Provide assistance when requested</li>
+                <li>Frequency: Only when you text "HELP" or "INFO"</li>
+            </ul>
+        </li>
+    </ol>
+    
+    <h3>Message Frequency</h3>
+    <p>Message frequency varies based on your usage:</p>
+    <ul>
+        <li><strong>Verification:</strong> One-time per setup</li>
+        <li><strong>Confirmations:</strong> Each time you text a book (you control this)</li>
+        <li><strong>Availability Alerts:</strong> Depends on inventory changes (optional, can be disabled)</li>
+        <li><strong>Service Updates:</strong> Rare (fewer than 5 per year)</li>
+    </ul>
+    <p>Typical users receive 1-10 messages per month.</p>
+    
+    <h3>Message &amp; Data Rates</h3>
+    <p>Standard message and data rates from your mobile carrier may apply. TBR.fyi does not charge for SMS messages, but your carrier may charge for receiving texts. Check with your mobile carrier for details about your messaging plan.</p>
+    
+    <h3>How to Opt-Out</h3>
+    <p>You can stop receiving SMS messages from TBR.fyi at any time:</p>
+    
+    <p><strong>Method 1: Text Commands</strong><br>
+    Reply to any message with any of these keywords:</p>
+    <ul>
+        <li>STOP</li>
+        <li>UNSUBSCRIBE</li>
+        <li>CANCEL</li>
+        <li>END</li>
+        <li>QUIT</li>
+        <li>OPTOUT</li>
+        <li>REVOKE</li>
+        <li>STOPALL</li>
+    </ul>
+    <p>You will receive a confirmation message: "You've been unsubscribed from TBR.fyi SMS. Reply START to resume text-to-shelf."</p>
+    
+    <p><strong>Method 2: Account Settings</strong></p>
+    <ol>
+        <li>Log into your TBR.fyi account</li>
+        <li>Go to Profile or Settings</li>
+        <li>Click "Disable Text-to-Shelf SMS"</li>
+    </ol>
+    
+    <p><strong>Method 3: Email</strong><br>
+    Contact us at support@tbr.fyi with your phone number and request to opt-out.</p>
+    
+    <p><strong>Processing Time:</strong> All opt-out requests are processed within 24 hours, typically immediately.</p>
+    
+    <h3>How to Resume Service</h3>
+    <p>If you previously opted out and want to resume SMS service:</p>
+    <ul>
+        <li>Text "START" or "RESUME" to our SMS number, OR</li>
+        <li>Re-enable Text-to-Shelf in your account settings</li>
+    </ul>
+    <p>You will need to verify your phone number again with a confirmation code.</p>
+    
+    <h3>How We Use Your Phone Number</h3>
+    <p><strong>We use your phone number to:</strong></p>
+    <ul>
+        <li>Send you the SMS messages described above</li>
+        <li>Verify your identity for account security</li>
+        <li>Prevent spam and abuse of our service</li>
+    </ul>
+    
+    <p><strong>We DO NOT:</strong></p>
+    <ul>
+        <li>Sell your phone number to third parties</li>
+        <li>Rent your phone number to marketers</li>
+        <li>Share your phone number for promotional purposes</li>
+        <li>Send you marketing messages from other companies</li>
+        <li>Use your phone number for telemarketing calls</li>
+    </ul>
+    
+    <h3>Third-Party Service Providers</h3>
+    <p>We use <strong>Twilio</strong> as our SMS service provider to deliver text messages. When you enable Text-to-Shelf:</p>
+    <ul>
+        <li>Your phone number is shared with Twilio for message delivery</li>
+        <li>Twilio processes messages according to their privacy policy: <a href="https://www.twilio.com/legal/privacy" target="_blank">https://www.twilio.com/legal/privacy</a></li>
+        <li>Twilio is required to comply with TCPA and industry regulations</li>
+    </ul>
+    
+    <p>We may also share your phone number with:</p>
+    <ul>
+        <li><strong>Carrier Gateway Providers:</strong> Required for SMS delivery (AT&amp;T, Verizon, T-Mobile, etc.)</li>
+        <li><strong>Compliance Partners:</strong> For A2P 10DLC campaign registration and spam prevention</li>
+    </ul>
+    
+    <p>We do not share your phone number with any other third parties without your explicit consent, except as required by law.</p>
+    
+    <h3>Data Retention</h3>
+    <p>We retain your phone number and SMS consent records:</p>
+    <ul>
+        <li><strong>While SMS is enabled:</strong> For the duration of your active Text-to-Shelf service</li>
+        <li><strong>After opt-out:</strong> For 6 months to honor your opt-out preference and prevent re-enrollment</li>
+        <li><strong>Compliance records:</strong> Consent timestamps and opt-out records kept for 4 years per TCPA requirements</li>
+    </ul>
+    <p>You can request deletion of your phone number by contacting support@tbr.fyi. Note that we may retain anonymized opt-out records for compliance purposes.</p>
+    
+    <h3>Security</h3>
+    <p>We protect your phone number with industry-standard security measures:</p>
+    <ul>
+        <li>Encrypted transmission (TLS/SSL)</li>
+        <li>Encrypted storage in our database</li>
+        <li>Access controls limiting who can view phone numbers</li>
+        <li>Regular security audits</li>
+    </ul>
+    <p>However, no method of transmission or storage is 100% secure. SMS messages are not encrypted end-to-end by carriers.</p>
+    
+    <h3>Your Rights</h3>
+    <p>Depending on your location, you may have rights regarding your phone number data:</p>
+    <p><strong>Access:</strong> Request a copy of your phone number and consent records<br>
+    <strong>Correction:</strong> Update your phone number in account settings<br>
+    <strong>Deletion:</strong> Request removal of your phone number (subject to compliance retention)<br>
+    <strong>Opt-Out:</strong> Stop receiving messages at any time<br>
+    <strong>Portability:</strong> Export your account data including phone number</p>
+    <p>To exercise these rights, contact us at support@tbr.fyi or use your account settings.</p>
+    
+    <h3>Consent and Legal Basis</h3>
+    <p>By enabling Text-to-Shelf and verifying your phone number:</p>
+    <ul>
+        <li>You provide <strong>prior express consent</strong> to receive SMS messages as described above</li>
+        <li>You confirm you are the owner or authorized user of the phone number</li>
+        <li>You agree to receive transactional service messages related to your book tracking</li>
+    </ul>
+    
+    <p>This consent complies with:</p>
+    <ul>
+        <li>Telephone Consumer Protection Act (TCPA)</li>
+        <li>Cellular Telecommunications Industry Association (CTIA) guidelines</li>
+        <li>FCC SMS regulations</li>
+        <li>A2P 10DLC requirements</li>
+    </ul>
+    
+    <h3>Children's Privacy</h3>
+    <p>TBR.fyi does not knowingly collect phone numbers from children under 13. If you are under 13, do not enable Text-to-Shelf. If we discover we have collected a phone number from a child under 13, we will delete it promptly.</p>
+    
+    <h3>International Users</h3>
+    <p>SMS service is currently only available for US phone numbers. International numbers may not be supported. Standard international messaging rates may apply if you are traveling outside the US.</p>
+    
+    <h3>Changes to SMS Terms</h3>
+    <p>If we make material changes to our SMS practices:</p>
+    <ul>
+        <li>We will update this privacy policy with the new effective date</li>
+        <li>We will notify you via email or SMS</li>
+        <li>Continued use of Text-to-Shelf after changes constitutes acceptance</li>
+        <li>You can opt-out at any time if you disagree with changes</li>
+    </ul>
+    
+    <h3>Questions or Complaints</h3>
+    <p>For questions about our SMS service or privacy practices:</p>
+    <p><strong>Email:</strong> support@tbr.fyi<br>
+    <strong>Mail:</strong> [Your Company Address - to be added]<br>
+    <strong>Phone:</strong> [Support phone number - to be added]</p>
+    <p><strong>TCPA Compliance Officer:</strong> support@tbr.fyi</p>
+    
+    <p>If you believe we have violated your SMS privacy rights, please contact us first so we can address your concern. You may also file a complaint with:</p>
+    <ul>
+        <li>Federal Communications Commission (FCC): <a href="https://consumercomplaints.fcc.gov" target="_blank">https://consumercomplaints.fcc.gov</a></li>
+        <li>Federal Trade Commission (FTC): <a href="https://reportfraud.ftc.gov" target="_blank">https://reportfraud.ftc.gov</a></li>
+    </ul>
+    
+    <hr>
+    
+    <div class="summary">
+        <h2>Summary</h2>
+        <ul>
+            <li><strong>What:</strong> You'll receive book confirmations, verification codes, and optional availability alerts</li>
+            <li><strong>How Often:</strong> Varies based on your usage (typically 1-10/month)</li>
+            <li><strong>Cost:</strong> Standard carrier rates may apply</li>
+            <li><strong>Opt-Out:</strong> Text STOP, disable in settings, or email us</li>
+            <li><strong>Privacy:</strong> We don't sell your number; shared with Twilio for delivery only</li>
+            <li><strong>Questions:</strong> support@tbr.fyi</li>
+        </ul>
+        <p><strong>By enabling Text-to-Shelf, you consent to receive these SMS messages.</strong></p>
+    </div>
+    </section>
+</Layout>
+<style>
+    .posts {
+        padding-top: var(--sm);
+        display: grid;
+        gap: var(--size-2);
+    }
+    section {
+        margin-top: var(--md);
+    }
+</style>
