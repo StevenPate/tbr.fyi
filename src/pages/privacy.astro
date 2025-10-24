@@ -1,249 +1,736 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import { getCollection } from "astro:content";
 
-const posts = await getCollection("posts");
-const title = "Privacy";
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - TBR.fyi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<Layout {title}>
-    <section>
-    <p>This is an extract from the complete Privacy Policy</p>
- <h2>Privacy Policy - SMS Communications Section</h2>
-    
-    <p>This is an extract of TBR.fyi's main privacy policy at <code>https://tbr.fyi/privacy</code>.</p>
-    
-    <hr>
-    
-    <h2>SMS Communications &amp; Text-to-Shelf Service</h2>
-    
-    <h3>Overview</h3>
-    <p>When you enable the Text-to-Shelf feature on TBR.fyi, you consent to receive SMS (text) messages from us at the phone number you provide. This section explains what messages you'll receive, how to opt-out, and how we handle your phone number.</p>
-    
-    <h3>What Messages You'll Receive</h3>
-    <p>By enabling Text-to-Shelf, you will receive the following types of SMS messages:</p>
-    
-    <ol>
-        <li>
-            <strong>Verification Messages</strong>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+            color: #1a1a1a;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 0.3em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-top: 1.5em;
+            margin-bottom: 0.8em;
+            color: #2a2a2a;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.2em;
+        }
+
+        h3 {
+            font-size: 1.3em;
+            margin-top: 1.2em;
+            margin-bottom: 0.6em;
+            color: #3a3a3a;
+        }
+
+        h4 {
+            font-size: 1.1em;
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            color: #4a4a4a;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        ul, ol {
+            margin-left: 2em;
+            margin-bottom: 1em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .meta {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 2em;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+
+        .toc {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 2em 0;
+        }
+
+        .toc h2 {
+            margin-top: 0;
+            border-bottom: none;
+            font-size: 1.3em;
+        }
+
+        .toc ul {
+            margin-left: 1.5em;
+        }
+
+        .toc a {
+            color: #555;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 1.5em 0;
+        }
+
+        .summary {
+            background-color: #e7f3ff;
+            padding: 20px;
+            border-left: 4px solid #007bff;
+            margin: 2em 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5em 0;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TBR.fyi Privacy Policy</h1>
+
+        <div class="meta">
+            <strong>Last Updated:</strong> October 23, 2025<br>
+            <strong>Effective Date:</strong> [To be determined upon deployment]
+        </div>
+
+        <div class="toc">
+            <h2>Table of Contents</h2>
+            <ol>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#information-we-collect">Information We Collect</a></li>
+                <li><a href="#how-we-use">How We Use Your Information</a></li>
+                <li><a href="#how-we-share">How We Share Your Information</a></li>
+                <li><a href="#sms-communications">SMS Communications & Text-to-Shelf Service</a></li>
+                <li><a href="#cookies">Cookies and Tracking Technologies</a></li>
+                <li><a href="#data-security">Data Security</a></li>
+                <li><a href="#data-retention">Data Retention</a></li>
+                <li><a href="#your-rights">Your Privacy Rights</a></li>
+                <li><a href="#third-party">Third-Party Services and Links</a></li>
+                <li><a href="#childrens-privacy">Children's Privacy</a></li>
+                <li><a href="#international">International Users</a></li>
+                <li><a href="#ccpa">California Privacy Rights (CCPA)</a></li>
+                <li><a href="#gdpr">European Users (GDPR)</a></li>
+                <li><a href="#changes">Changes to This Privacy Policy</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ol>
+        </div>
+
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Welcome to TBR.fyi ("we," "us," "our," or "TBR"). TBR.fyi provides a personal reading list management service that helps you track books you want to read, discover new titles, and find books at local bookstores.</p>
+            <p>This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our website, mobile applications, and services (collectively, the "Service").</p>
+            <p><strong>By using TBR.fyi, you agree to the collection and use of information in accordance with this Privacy Policy.</strong> If you do not agree with our policies and practices, please do not use the Service.</p>
+
+            <div class="summary">
+                <h3>Key Points</h3>
+                <ul>
+                    <li>We collect information you provide (account details, reading lists) and usage data</li>
+                    <li>We use your information to provide and improve our service</li>
+                    <li>We share data with service providers (hosting, SMS delivery) but don't sell your personal information</li>
+                    <li>You have control over your data and can request access, correction, or deletion</li>
+                    <li>We protect your information with industry-standard security measures</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="information-we-collect">
+            <h2>Information We Collect</h2>
+
+            <h3>Information You Provide to Us</h3>
+            <h4>Account Information:</h4>
             <ul>
-                <li>Purpose: Confirm you own the phone number</li>
-                <li>Frequency: One-time when enabling SMS, or when re-verifying</li>
-                <li>Example: "Your TBR.fyi verification code is: 847293"</li>
+                <li>Email address (required for account creation)</li>
+                <li>Username/display name</li>
+                <li>Password (encrypted)</li>
+                <li>Profile information (bio, avatar, location - optional)</li>
+                <li>Phone number (if you enable Text-to-Shelf SMS)</li>
             </ul>
-        </li>
-        <li>
-            <strong>Book Addition Confirmations</strong>
+
+            <h4>Reading List Data:</h4>
             <ul>
-                <li>Purpose: Confirm your book was successfully added to your reading list</li>
-                <li>Frequency: Each time you text us a book title, ISBN, or link</li>
-                <li>Example: "✓ Added to your TBR: 'The Overstory' by Richard Powers"</li>
+                <li>Books you add to your reading list (titles, authors, ISBNs)</li>
+                <li>Reading status (want to read, currently reading, finished)</li>
+                <li>Personal notes and ratings</li>
+                <li>Bookstore preferences for availability notifications</li>
+                <li>Tags and custom lists you create</li>
             </ul>
-        </li>
-        <li>
-            <strong>Local Availability Notifications</strong> (Optional)
+
+            <h4>Communications:</h4>
             <ul>
-                <li>Purpose: Alert you when books on your list become available at local bookstores</li>
-                <li>Frequency: Based on inventory changes and your notification preferences</li>
-                <li>Example: "📚 'Demon Copperhead' in stock at Powell's Books!"</li>
-                <li>Note: You can enable/disable these notifications in your account settings</li>
+                <li>Messages you send to our support team</li>
+                <li>Feedback and survey responses</li>
+                <li>SMS messages you send to our service (book titles, commands)</li>
             </ul>
-        </li>
-        <li>
-            <strong>Service Updates</strong> (Rare)
+
+            <h4>Payment Information:</h4>
             <ul>
-                <li>Purpose: Critical information about the TBR.fyi service</li>
-                <li>Frequency: Rarely - only for important service changes</li>
-                <li>Example: Scheduled maintenance, major feature updates, terms changes</li>
+                <li>If we introduce paid features: payment card information is processed by our payment provider (Stripe) and not stored on our servers</li>
+                <li>We only store transaction IDs and subscription status</li>
             </ul>
-        </li>
-        <li>
-            <strong>Help Responses</strong>
+
+            <h3>Information We Collect Automatically</h3>
+            <h4>Usage Data:</h4>
             <ul>
-                <li>Purpose: Provide assistance when requested</li>
-                <li>Frequency: Only when you text "HELP" or "INFO"</li>
+                <li>Pages you visit on TBR.fyi</li>
+                <li>Features you use</li>
+                <li>Time spent on the Service</li>
+                <li>Books you search for or view</li>
+                <li>Links you click</li>
             </ul>
-        </li>
-    </ol>
-    
-    <h3>Message Frequency</h3>
-    <p>Message frequency varies based on your usage:</p>
-    <ul>
-        <li><strong>Verification:</strong> One-time per setup</li>
-        <li><strong>Confirmations:</strong> Each time you text a book (you control this)</li>
-        <li><strong>Availability Alerts:</strong> Depends on inventory changes (optional, can be disabled)</li>
-        <li><strong>Service Updates:</strong> Rare (fewer than 5 per year)</li>
-    </ul>
-    <p>Typical users receive 1-10 messages per month.</p>
-    
-    <h3>Message &amp; Data Rates</h3>
-    <p>Standard message and data rates from your mobile carrier may apply. TBR.fyi does not charge for SMS messages, but your carrier may charge for receiving texts. Check with your mobile carrier for details about your messaging plan.</p>
-    
-    <h3>How to Opt-Out</h3>
-    <p>You can stop receiving SMS messages from TBR.fyi at any time:</p>
-    
-    <p><strong>Method 1: Text Commands</strong><br>
-    Reply to any message with any of these keywords:</p>
-    <ul>
-        <li>STOP</li>
-        <li>UNSUBSCRIBE</li>
-        <li>CANCEL</li>
-        <li>END</li>
-        <li>QUIT</li>
-        <li>OPTOUT</li>
-        <li>REVOKE</li>
-        <li>STOPALL</li>
-    </ul>
-    <p>You will receive a confirmation message: "You've been unsubscribed from TBR.fyi SMS. Reply START to resume text-to-shelf."</p>
-    
-    <p><strong>Method 2: Account Settings</strong></p>
-    <ol>
-        <li>Log into your TBR.fyi account</li>
-        <li>Go to Profile or Settings</li>
-        <li>Click "Disable Text-to-Shelf SMS"</li>
-    </ol>
-    
-    <p><strong>Method 3: Email</strong><br>
-    Contact us at support@tbr.fyi with your phone number and request to opt-out.</p>
-    
-    <p><strong>Processing Time:</strong> All opt-out requests are processed within 24 hours, typically immediately.</p>
-    
-    <h3>How to Resume Service</h3>
-    <p>If you previously opted out and want to resume SMS service:</p>
-    <ul>
-        <li>Text "START" or "RESUME" to our SMS number, OR</li>
-        <li>Re-enable Text-to-Shelf in your account settings</li>
-    </ul>
-    <p>You will need to verify your phone number again with a confirmation code.</p>
-    
-    <h3>How We Use Your Phone Number</h3>
-    <p><strong>We use your phone number to:</strong></p>
-    <ul>
-        <li>Send you the SMS messages described above</li>
-        <li>Verify your identity for account security</li>
-        <li>Prevent spam and abuse of our service</li>
-    </ul>
-    
-    <p><strong>We DO NOT:</strong></p>
-    <ul>
-        <li>Sell your phone number to third parties</li>
-        <li>Rent your phone number to marketers</li>
-        <li>Share your phone number for promotional purposes</li>
-        <li>Send you marketing messages from other companies</li>
-        <li>Use your phone number for telemarketing calls</li>
-    </ul>
-    
-    <h3>Third-Party Service Providers</h3>
-    <p>We use <strong>Twilio</strong> as our SMS service provider to deliver text messages. When you enable Text-to-Shelf:</p>
-    <ul>
-        <li>Your phone number is shared with Twilio for message delivery</li>
-        <li>Twilio processes messages according to their privacy policy: <a href="https://www.twilio.com/legal/privacy" target="_blank">https://www.twilio.com/legal/privacy</a></li>
-        <li>Twilio is required to comply with TCPA and industry regulations</li>
-    </ul>
-    
-    <p>We may also share your phone number with:</p>
-    <ul>
-        <li><strong>Carrier Gateway Providers:</strong> Required for SMS delivery (AT&amp;T, Verizon, T-Mobile, etc.)</li>
-        <li><strong>Compliance Partners:</strong> For A2P 10DLC campaign registration and spam prevention</li>
-    </ul>
-    
-    <p>We do not share your phone number with any other third parties without your explicit consent, except as required by law.</p>
-    
-    <h3>Data Retention</h3>
-    <p>We retain your phone number and SMS consent records:</p>
-    <ul>
-        <li><strong>While SMS is enabled:</strong> For the duration of your active Text-to-Shelf service</li>
-        <li><strong>After opt-out:</strong> For 6 months to honor your opt-out preference and prevent re-enrollment</li>
-        <li><strong>Compliance records:</strong> Consent timestamps and opt-out records kept for 4 years per TCPA requirements</li>
-    </ul>
-    <p>You can request deletion of your phone number by contacting support@tbr.fyi. Note that we may retain anonymized opt-out records for compliance purposes.</p>
-    
-    <h3>Security</h3>
-    <p>We protect your phone number with industry-standard security measures:</p>
-    <ul>
-        <li>Encrypted transmission (TLS/SSL)</li>
-        <li>Encrypted storage in our database</li>
-        <li>Access controls limiting who can view phone numbers</li>
-        <li>Regular security audits</li>
-    </ul>
-    <p>However, no method of transmission or storage is 100% secure. SMS messages are not encrypted end-to-end by carriers.</p>
-    
-    <h3>Your Rights</h3>
-    <p>Depending on your location, you may have rights regarding your phone number data:</p>
-    <p><strong>Access:</strong> Request a copy of your phone number and consent records<br>
-    <strong>Correction:</strong> Update your phone number in account settings<br>
-    <strong>Deletion:</strong> Request removal of your phone number (subject to compliance retention)<br>
-    <strong>Opt-Out:</strong> Stop receiving messages at any time<br>
-    <strong>Portability:</strong> Export your account data including phone number</p>
-    <p>To exercise these rights, contact us at support@tbr.fyi or use your account settings.</p>
-    
-    <h3>Consent and Legal Basis</h3>
-    <p>By enabling Text-to-Shelf and verifying your phone number:</p>
-    <ul>
-        <li>You provide <strong>prior express consent</strong> to receive SMS messages as described above</li>
-        <li>You confirm you are the owner or authorized user of the phone number</li>
-        <li>You agree to receive transactional service messages related to your book tracking</li>
-    </ul>
-    
-    <p>This consent complies with:</p>
-    <ul>
-        <li>Telephone Consumer Protection Act (TCPA)</li>
-        <li>Cellular Telecommunications Industry Association (CTIA) guidelines</li>
-        <li>FCC SMS regulations</li>
-        <li>A2P 10DLC requirements</li>
-    </ul>
-    
-    <h3>Children's Privacy</h3>
-    <p>TBR.fyi does not knowingly collect phone numbers from children under 13. If you are under 13, do not enable Text-to-Shelf. If we discover we have collected a phone number from a child under 13, we will delete it promptly.</p>
-    
-    <h3>International Users</h3>
-    <p>SMS service is currently only available for US phone numbers. International numbers may not be supported. Standard international messaging rates may apply if you are traveling outside the US.</p>
-    
-    <h3>Changes to SMS Terms</h3>
-    <p>If we make material changes to our SMS practices:</p>
-    <ul>
-        <li>We will update this privacy policy with the new effective date</li>
-        <li>We will notify you via email or SMS</li>
-        <li>Continued use of Text-to-Shelf after changes constitutes acceptance</li>
-        <li>You can opt-out at any time if you disagree with changes</li>
-    </ul>
-    
-    <h3>Questions or Complaints</h3>
-    <p>For questions about our SMS service or privacy practices:</p>
-    <p><strong>Email:</strong> support@tbr.fyi<br>
-    <strong>Mail:</strong> [Your Company Address - to be added]<br>
-    <strong>Phone:</strong> [Support phone number - to be added]</p>
-    <p><strong>TCPA Compliance Officer:</strong> support@tbr.fyi</p>
-    
-    <p>If you believe we have violated your SMS privacy rights, please contact us first so we can address your concern. You may also file a complaint with:</p>
-    <ul>
-        <li>Federal Communications Commission (FCC): <a href="https://consumercomplaints.fcc.gov" target="_blank">https://consumercomplaints.fcc.gov</a></li>
-        <li>Federal Trade Commission (FTC): <a href="https://reportfraud.ftc.gov" target="_blank">https://reportfraud.ftc.gov</a></li>
-    </ul>
-    
-    <hr>
-    
-    <div class="summary">
-        <h2>Summary</h2>
-        <ul>
-            <li><strong>What:</strong> You'll receive book confirmations, verification codes, and optional availability alerts</li>
-            <li><strong>How Often:</strong> Varies based on your usage (typically 1-10/month)</li>
-            <li><strong>Cost:</strong> Standard carrier rates may apply</li>
-            <li><strong>Opt-Out:</strong> Text STOP, disable in settings, or email us</li>
-            <li><strong>Privacy:</strong> We don't sell your number; shared with Twilio for delivery only</li>
-            <li><strong>Questions:</strong> support@tbr.fyi</li>
-        </ul>
-        <p><strong>By enabling Text-to-Shelf, you consent to receive these SMS messages.</strong></p>
+
+            <h4>Device Information:</h4>
+            <ul>
+                <li>IP address</li>
+                <li>Browser type and version</li>
+                <li>Operating system</li>
+                <li>Device type (desktop, mobile, tablet)</li>
+                <li>Screen resolution</li>
+                <li>Referring website</li>
+            </ul>
+
+            <h4>Location Information:</h4>
+            <ul>
+                <li>Approximate location based on IP address (city/region level)</li>
+                <li>Precise location (only if you grant permission for bookstore discovery)</li>
+            </ul>
+
+            <h3>Information from Third Parties</h3>
+            <h4>Book Data:</h4>
+            <p>We retrieve book metadata (covers, descriptions, ISBNs) from public databases and APIs (Google Books, Open Library, etc.)</p>
+
+            <h4>Social Authentication (if enabled):</h4>
+            <ul>
+                <li>If you sign in with Google or other OAuth providers, we receive: name, email, profile picture</li>
+                <li>We do not access your social media contacts or posts</li>
+            </ul>
+        </section>
+
+        <section id="how-we-use">
+            <h2>How We Use Your Information</h2>
+            <p>We use your information for the following purposes:</p>
+
+            <h3>Provide and Maintain the Service</h3>
+            <ul>
+                <li>Create and manage your account</li>
+                <li>Display your reading lists and book data</li>
+                <li>Enable Text-to-Shelf SMS functionality</li>
+                <li>Check book availability at local bookstores</li>
+                <li>Send notifications you've requested (availability alerts, reading reminders)</li>
+            </ul>
+
+            <h3>Communicate with You</h3>
+            <ul>
+                <li>Send verification codes and account security notifications</li>
+                <li>Respond to your support requests</li>
+                <li>Send service updates and important announcements</li>
+                <li>Request feedback or participation in surveys (optional)</li>
+            </ul>
+
+            <h3>Improve and Personalize the Service</h3>
+            <ul>
+                <li>Analyze usage patterns to improve features</li>
+                <li>Develop new features based on user behavior</li>
+                <li>Personalize book recommendations (future feature)</li>
+                <li>Optimize website performance and user experience</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>We will never:</strong>
+                <ul>
+                    <li>Sell your personal information to third parties</li>
+                    <li>Share your reading lists publicly without your permission</li>
+                    <li>Send unsolicited promotional SMS messages</li>
+                    <li>Use your data in ways materially different from this policy without your consent</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="how-we-share">
+            <h2>How We Share Your Information</h2>
+            <p>We share your information only in the following circumstances:</p>
+
+            <h3>With Your Consent</h3>
+            <ul>
+                <li>When you choose to make your reading list public</li>
+                <li>When you share specific books or lists with other users</li>
+                <li>When you grant permission to connect with third-party services</li>
+            </ul>
+
+            <h3>Service Providers</h3>
+            <p>We share information with third-party companies that help us operate the Service:</p>
+            <ul>
+                <li><strong>Hosting and Infrastructure:</strong> Cloud hosting providers (AWS, Vercel, or similar)</li>
+                <li><strong>SMS Service:</strong> Twilio (for Text-to-Shelf SMS delivery)</li>
+                <li><strong>Analytics:</strong> Website analytics providers (e.g., Plausible Analytics, Google Analytics)</li>
+                <li><strong>Email Services:</strong> Transactional email providers (e.g., SendGrid, Postmark)</li>
+                <li><strong>Payment Processing:</strong> Payment processors (Stripe) - they receive payment information directly</li>
+            </ul>
+
+            <p><strong>All service providers:</strong></p>
+            <ul>
+                <li>Are contractually obligated to protect your data</li>
+                <li>Are only permitted to use your data to provide services to us</li>
+                <li>Cannot use your data for their own purposes</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>We do not:</strong>
+                <ul>
+                    <li>Sell your personal information to data brokers</li>
+                    <li>Share your reading lists with publishers or advertisers without consent</li>
+                    <li>Provide your contact information to third parties for their marketing</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="sms-communications">
+            <h2>SMS Communications & Text-to-Shelf Service</h2>
+
+            <h3>Overview</h3>
+            <p>When you enable the Text-to-Shelf feature on TBR.fyi, you consent to receive SMS (text) messages from us at the phone number you provide.</p>
+
+            <h3>What Messages You'll Receive</h3>
+            <ol>
+                <li><strong>Verification Messages</strong> - One-time when enabling SMS<br>
+                    Example: "Your TBR.fyi verification code is: 847293"</li>
+                <li><strong>Book Addition Confirmations</strong> - Each time you text a book<br>
+                    Example: "✓ Added to your TBR: 'The Overstory' by Richard Powers"</li>
+                <li><strong>Local Availability Notifications</strong> (Optional) - When books become available<br>
+                    Example: "📚 'Demon Copperhead' in stock at Powell's Books!"</li>
+                <li><strong>Service Updates</strong> (Rare) - Fewer than 5 per year for critical information</li>
+                <li><strong>Help Responses</strong> - Only when you text "HELP" or "INFO"</li>
+            </ol>
+
+            <h3>Message Frequency</h3>
+            <p>Message frequency varies based on your usage:</p>
+            <ul>
+                <li><strong>Verification:</strong> One-time per setup</li>
+                <li><strong>Confirmations:</strong> Each time you text a book (you control this)</li>
+                <li><strong>Availability Alerts:</strong> Based on inventory changes (optional, can be disabled)</li>
+                <li><strong>Service Updates:</strong> Rare (fewer than 5 per year)</li>
+            </ul>
+            <p>Typical users receive 1-10 messages per month.</p>
+
+            <h3>Message & Data Rates</h3>
+            <p>Standard message and data rates from your mobile carrier may apply. TBR.fyi does not charge for SMS messages, but your carrier may charge for receiving texts.</p>
+
+            <h3>How to Opt-Out</h3>
+            <p><strong>Method 1: Text Commands</strong><br>
+            Reply to any message with: STOP, UNSUBSCRIBE, CANCEL, END, QUIT, OPTOUT, REVOKE, or STOPALL</p>
+
+            <p><strong>Method 2: Account Settings</strong><br>
+            Log into your TBR.fyi account → Profile/Settings → Disable Text-to-Shelf SMS</p>
+
+            <p><strong>Method 3: Email</strong><br>
+            Contact us at <a href="mailto:support@tbr.fyi">support@tbr.fyi</a></p>
+
+            <p><strong>Processing Time:</strong> All opt-out requests are processed within 24 hours, typically immediately.</p>
+
+            <h3>Third-Party Service Providers</h3>
+            <p>We use <strong>Twilio</strong> as our SMS service provider. Your phone number is shared with Twilio for message delivery. Twilio processes messages according to their privacy policy: <a href="https://www.twilio.com/legal/privacy" target="_blank">https://www.twilio.com/legal/privacy</a></p>
+
+            <h3>Data Retention (SMS)</h3>
+            <ul>
+                <li><strong>While SMS is enabled:</strong> For the duration of your active service</li>
+                <li><strong>After opt-out:</strong> 6 months to honor your preference</li>
+                <li><strong>Compliance records:</strong> 4 years per TCPA requirements</li>
+            </ul>
+
+            <h3>Consent and Legal Basis</h3>
+            <p>By enabling Text-to-Shelf and verifying your phone number, you provide <strong>prior express consent</strong> to receive SMS messages. This complies with:</p>
+            <ul>
+                <li>Telephone Consumer Protection Act (TCPA)</li>
+                <li>Cellular Telecommunications Industry Association (CTIA) guidelines</li>
+                <li>FCC SMS regulations</li>
+                <li>A2P 10DLC requirements</li>
+            </ul>
+        </section>
+
+        <section id="cookies">
+            <h2>Cookies and Tracking Technologies</h2>
+
+            <h3>What Are Cookies?</h3>
+            <p>Cookies are small text files stored on your device when you visit a website. They help websites remember your preferences and improve your experience.</p>
+
+            <h3>Cookies We Use</h3>
+            <h4>Essential Cookies (Required):</h4>
+            <ul>
+                <li><strong>Authentication:</strong> Keep you logged in to your account</li>
+                <li><strong>Security:</strong> Prevent cross-site request forgery (CSRF) attacks</li>
+                <li><strong>Preferences:</strong> Remember your settings (theme, display options)</li>
+            </ul>
+
+            <h4>Analytics Cookies (Optional):</h4>
+            <ul>
+                <li><strong>Usage analytics:</strong> Understand how users interact with our Service</li>
+                <li><strong>Performance monitoring:</strong> Identify and fix technical issues</li>
+            </ul>
+
+            <p><strong>We do not use:</strong> Advertising cookies, third-party tracking cookies for marketing, or cross-site tracking cookies</p>
+
+            <h3>Your Cookie Choices</h3>
+            <p>Most browsers allow you to block or delete cookies. Instructions for popular browsers:</p>
+            <ul>
+                <li><strong>Chrome:</strong> Settings → Privacy and security → Cookies</li>
+                <li><strong>Firefox:</strong> Settings → Privacy & Security → Cookies</li>
+                <li><strong>Safari:</strong> Preferences → Privacy → Cookies</li>
+                <li><strong>Edge:</strong> Settings → Privacy → Cookies</li>
+            </ul>
+            <p><em>Note: Blocking essential cookies may prevent you from using certain features.</em></p>
+        </section>
+
+        <section id="data-security">
+            <h2>Data Security</h2>
+
+            <h3>How We Protect Your Information</h3>
+            <p>We implement reasonable security measures to protect your personal information:</p>
+
+            <h4>Technical Measures:</h4>
+            <ul>
+                <li><strong>Encryption in transit:</strong> HTTPS/TLS for all data transmission</li>
+                <li><strong>Encryption at rest:</strong> Database encryption for sensitive data</li>
+                <li><strong>Password security:</strong> Passwords hashed using bcrypt or similar algorithms</li>
+                <li><strong>API security:</strong> Authentication tokens, rate limiting, input validation</li>
+                <li><strong>Regular backups:</strong> Encrypted backups stored securely</li>
+            </ul>
+
+            <h3>Your Role in Security</h3>
+            <p><strong>Help us protect your account:</strong></p>
+            <ul>
+                <li>Use a strong, unique password</li>
+                <li>Don't share your password with anyone</li>
+                <li>Enable two-factor authentication (2FA)</li>
+                <li>Log out from shared or public devices</li>
+                <li>Keep your email account secure</li>
+                <li>Report suspicious activity to <a href="mailto:support@tbr.fyi">support@tbr.fyi</a></li>
+            </ul>
+
+            <h3>Data Breach Notification</h3>
+            <p>If a security breach occurs that affects your personal information:</p>
+            <ul>
+                <li>We will notify you via email within 72 hours of discovery</li>
+                <li>We will describe what information was affected</li>
+                <li>We will explain what steps we're taking to address the breach</li>
+                <li>We will advise you on steps you can take to protect yourself</li>
+            </ul>
+
+            <div class="highlight">
+                <strong>No method of transmission or storage is 100% secure.</strong> While we strive to protect your information, you provide information at your own risk.
+            </div>
+        </section>
+
+        <section id="data-retention">
+            <h2>Data Retention</h2>
+
+            <h3>How Long We Keep Your Information</h3>
+            <ul>
+                <li><strong>Active Accounts:</strong> We retain your information for as long as your account is active</li>
+                <li><strong>Inactive Accounts:</strong> After 3 years of inactivity, we may send a reminder email. After 4 years, we may delete your account (with 60 days advance notice)</li>
+                <li><strong>Deleted Accounts:</strong> Most information is deleted within 30 days. Some information may be retained for legal or legitimate business purposes:
+                    <ul>
+                        <li>Transaction records: 7 years (tax/accounting requirements)</li>
+                        <li>Opt-out records (SMS): 4 years (TCPA compliance)</li>
+                        <li>Security logs: 1 year (fraud prevention)</li>
+                    </ul>
+                </li>
+                <li><strong>Backups:</strong> Your data may remain in encrypted backups for up to 90 days after deletion</li>
+            </ul>
+        </section>
+
+        <section id="your-rights">
+            <h2>Your Privacy Rights</h2>
+
+            <h3>All Users</h3>
+            <ul>
+                <li><strong>Access Your Information:</strong> View and download your data from your account settings</li>
+                <li><strong>Correct Your Information:</strong> Update your account details, reading lists, and preferences</li>
+                <li><strong>Delete Your Information:</strong> Delete your account and data from account settings</li>
+                <li><strong>Opt-Out of Communications:</strong> Unsubscribe from emails or disable SMS</li>
+                <li><strong>Export Your Data:</strong> Download your reading lists, notes, and ratings in JSON or CSV format</li>
+            </ul>
+
+            <h3>How to Exercise Your Rights</h3>
+            <p><strong>Via Account Settings:</strong> Most rights can be exercised directly in your account settings at tbr.fyi/settings</p>
+            <p><strong>Via Email:</strong> For requests not available in settings, email <a href="mailto:support@tbr.fyi">support@tbr.fyi</a> with your request</p>
+            <p><strong>Response Time:</strong> We will respond to requests within 30 days</p>
+        </section>
+
+        <section id="third-party">
+            <h2>Third-Party Services and Links</h2>
+
+            <h3>Third-Party Services We Use</h3>
+            <ul>
+                <li><strong>Book Data:</strong> Google Books API, Open Library API</li>
+                <li><strong>Bookstore APIs:</strong> Bookshop.org (affiliate links), independent bookstore systems</li>
+                <li><strong>Authentication:</strong> Google OAuth</li>
+            </ul>
+
+            <p>Each third-party service has its own privacy policy. We recommend reviewing them:</p>
+            <ul>
+                <li>Google: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></li>
+                <li>Bookshop.org: <a href="https://bookshop.org/info/privacy" target="_blank">https://bookshop.org/info/privacy</a></li>
+            </ul>
+
+            <h3>Affiliate Links</h3>
+            <p>We may use affiliate links (e.g., Bookshop.org) to earn a commission when you purchase books. This does not affect the price you pay or require us to share your personal information with affiliates.</p>
+        </section>
+
+        <section id="childrens-privacy">
+            <h2>Children's Privacy</h2>
+            <p>TBR.fyi is not directed to children under 13 years of age.</p>
+            <p><strong>We do not knowingly:</strong></p>
+            <ul>
+                <li>Collect personal information from children under 13</li>
+                <li>Allow children under 13 to create accounts</li>
+                <li>Market to children</li>
+            </ul>
+            <p>If you are a parent or guardian and believe your child has provided information to us, please contact us at <a href="mailto:support@tbr.fyi">support@tbr.fyi</a>. We will promptly delete the information.</p>
+        </section>
+
+        <section id="international">
+            <h2>International Users</h2>
+            <p>TBR.fyi is based in the United States. Your information may be stored on servers in the United States and processed by service providers in other countries.</p>
+            <p><strong>By using TBR.fyi, you consent to the transfer of your information to the United States and other countries that may have different data protection laws than your country.</strong></p>
+            <p>If you are in the European Economic Area (EEA), UK, or Switzerland, additional protections apply. See <a href="#gdpr">European Users (GDPR)</a> below.</p>
+        </section>
+
+        <section id="ccpa">
+            <h2>California Privacy Rights (CCPA)</h2>
+            <p>If you are a California resident, the California Consumer Privacy Act (CCPA) provides additional rights:</p>
+
+            <h3>Your CCPA Rights</h3>
+            <ul>
+                <li><strong>Right to Know:</strong> Request categories and specific pieces of personal information we collect</li>
+                <li><strong>Right to Delete:</strong> Request deletion of your personal information</li>
+                <li><strong>Right to Opt-Out of Sale:</strong> We do not sell your personal information</li>
+                <li><strong>Right to Non-Discrimination:</strong> We will not discriminate for exercising your rights</li>
+            </ul>
+
+            <h3>How to Exercise CCPA Rights</h3>
+            <p><strong>Email:</strong> <a href="mailto:support@tbr.fyi">support@tbr.fyi</a><br>
+            <strong>Subject Line:</strong> "CCPA Privacy Request"<br>
+            <strong>Response Time:</strong> Within 45 days</p>
+
+            <h3>CCPA Categories of Information We Collect</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Examples</th>
+                        <th>Collected?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Identifiers</td>
+                        <td>Email, username, phone number</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Personal information</td>
+                        <td>Name, address, phone number</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Commercial information</td>
+                        <td>Transaction history</td>
+                        <td>Yes (if applicable)</td>
+                    </tr>
+                    <tr>
+                        <td>Internet activity</td>
+                        <td>Browsing history, search history</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Geolocation data</td>
+                        <td>City/region (from IP)</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Inferences</td>
+                        <td>Preferences, reading interests</td>
+                        <td>Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="gdpr">
+            <h2>European Users (GDPR)</h2>
+            <p>If you are in the European Economic Area (EEA), UK, or Switzerland, the General Data Protection Regulation (GDPR) provides additional rights and protections.</p>
+
+            <h3>Legal Basis for Processing</h3>
+            <ul>
+                <li><strong>Consent:</strong> SMS communications, optional features</li>
+                <li><strong>Contract:</strong> Providing the Service you signed up for</li>
+                <li><strong>Legitimate Interests:</strong> Improving the Service, preventing fraud</li>
+                <li><strong>Legal Obligations:</strong> Complying with laws</li>
+            </ul>
+
+            <h3>Your GDPR Rights</h3>
+            <ul>
+                <li><strong>Right of Access (Article 15):</strong> Request a copy of your personal data</li>
+                <li><strong>Right to Rectification (Article 16):</strong> Correct inaccurate data</li>
+                <li><strong>Right to Erasure (Article 17):</strong> Request deletion of your data</li>
+                <li><strong>Right to Restriction (Article 18):</strong> Limit how we use your data</li>
+                <li><strong>Right to Data Portability (Article 20):</strong> Receive data in a machine-readable format</li>
+                <li><strong>Right to Object (Article 21):</strong> Object to processing based on legitimate interests</li>
+                <li><strong>Right to Withdraw Consent:</strong> Withdraw consent at any time</li>
+                <li><strong>Right to Lodge a Complaint:</strong> File a complaint with your local data protection authority</li>
+            </ul>
+
+            <h3>How to Exercise GDPR Rights</h3>
+            <p><strong>Email:</strong> <a href="mailto:support@tbr.fyi">support@tbr.fyi</a><br>
+            <strong>Subject Line:</strong> "GDPR Data Subject Request"<br>
+            <strong>Response Time:</strong> Within 30 days</p>
+
+            <h3>Data Protection Authority</h3>
+            <ul>
+                <li><strong>EU:</strong> Find your authority at <a href="https://edpb.europa.eu/about-edpb/board/members_en" target="_blank">https://edpb.europa.eu/about-edpb/board/members_en</a></li>
+                <li><strong>UK:</strong> Information Commissioner's Office (ICO) - <a href="https://ico.org.uk" target="_blank">https://ico.org.uk</a></li>
+            </ul>
+        </section>
+
+        <section id="changes">
+            <h2>Changes to This Privacy Policy</h2>
+
+            <h3>How We Update This Policy</h3>
+            <p>We may update this Privacy Policy from time to time to reflect changes in our practices, new features, or legal requirements.</p>
+
+            <h3>How We Notify You</h3>
+            <p><strong>Material Changes:</strong> We will notify you via email at least 30 days before changes take effect and display a prominent notice on our website.</p>
+            <p><strong>Non-Material Changes:</strong> We will update the "Last Updated" date at the top of this policy.</p>
+
+            <h3>Your Options After Changes</h3>
+            <p>If you disagree with updated terms, you can stop using the Service, delete your account, or withdraw consent for optional features.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have questions, concerns, or requests regarding this Privacy Policy or our privacy practices:</p>
+
+            <p><strong>Email:</strong> <a href="mailto:support@tbr.fyi">support@tbr.fyi</a><br>
+            <strong>Subject Line:</strong> "Privacy Inquiry"<br>
+            <strong>Response Time:</strong> We aim to respond within 5 business days</p>
+
+            <h3>Specific Requests</h3>
+            <ul>
+                <li><strong>Data Subject Requests:</strong> support@tbr.fyi (Subject: "Privacy Rights Request")</li>
+                <li><strong>TCPA/SMS Compliance:</strong> support@tbr.fyi (Subject: "SMS Compliance")</li>
+            </ul>
+        </section>
+
+        <div class="summary">
+            <h2>Summary</h2>
+            <p>This summary is for convenience only and does not replace the full Privacy Policy above.</p>
+
+            <p><strong>What We Collect:</strong> Account info, reading lists, usage data, device info</p>
+            <p><strong>How We Use It:</strong> Provide and improve the Service, send notifications, analyze usage, prevent fraud</p>
+            <p><strong>How We Share It:</strong> Service providers (hosting, SMS, analytics), legal requirements, with your consent. We don't sell your personal information.</p>
+            <p><strong>Your Rights:</strong> Access, correct, or delete your information. Opt-out of communications. Export your data.</p>
+            <p><strong>Security:</strong> Encryption, access controls, password hashing. We'll notify you of breaches.</p>
+            <p><strong>Contact:</strong> <a href="mailto:support@tbr.fyi">support@tbr.fyi</a> for questions or requests</p>
+        </div>
+
+        <div class="highlight" style="margin-top: 3em;">
+            <p><strong>By using TBR.fyi, you acknowledge that you have read and understood this Privacy Policy.</strong></p>
+        </div>
+
+        <p style="text-align: center; color: #666; margin-top: 2em; padding-top: 2em; border-top: 1px solid #ddd;">
+            <strong>Document Version:</strong> 1.0 | <strong>Last Updated:</strong> October 23, 2025
+        </p>
     </div>
-    </section>
-</Layout>
-<style>
-    .posts {
-        padding-top: var(--sm);
-        display: grid;
-        gap: var(--size-2);
-    }
-    section {
-        margin-top: var(--md);
-    }
-</style>
+</body>
+</html>
